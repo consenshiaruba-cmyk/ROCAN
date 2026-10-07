@@ -5,6 +5,7 @@
 import type { Clock } from '@rocan/clock';
 import { REDACTION_FLAGS, type ActorType, type ReportFlag, type ReportStatus } from './enums';
 import { TransitionError } from './errors';
+import { JOBS } from './jobs';
 
 export const PIPELINE_REJECT_REASONS = [
   'outside_aruba',
@@ -191,7 +192,7 @@ export function transition(
   switch (event.type) {
     case 'submit':
       patch = { status: 'submitted' };
-      effects.push({ type: 'enqueue', job: 'report.ingest', data: { reportId: report.id } });
+      effects.push({ type: 'enqueue', job: JOBS.reportIngest, data: { reportId: report.id } });
       break;
 
     case 'ingest.start':
@@ -206,7 +207,7 @@ export function transition(
     case 'pipeline.done':
       if (event.autoDispatch) {
         patch = { status: 'approved', autoApproved: true };
-        effects.push({ type: 'enqueue', job: 'dispatch.render', data: { reportId: report.id } });
+        effects.push({ type: 'enqueue', job: JOBS.dispatchRender, data: { reportId: report.id } });
       } else {
         patch = { status: 'pending_review' };
       }
@@ -228,7 +229,7 @@ export function transition(
         moderatedBy: actorId,
         moderatedAt: at,
       };
-      effects.push({ type: 'enqueue', job: 'dispatch.render', data: { reportId: report.id } });
+      effects.push({ type: 'enqueue', job: JOBS.dispatchRender, data: { reportId: report.id } });
       break;
     }
 
@@ -288,7 +289,7 @@ export function transition(
 
     case 'retention.expire':
       patch = { status: 'archived', archivedAt: at };
-      effects.push({ type: 'enqueue', job: 'retention.purge', data: { reportId: report.id } });
+      effects.push({ type: 'enqueue', job: JOBS.retentionPurge, data: { reportId: report.id } });
       break;
   }
 

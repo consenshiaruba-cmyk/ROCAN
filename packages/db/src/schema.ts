@@ -169,6 +169,9 @@ export const report = pgTable(
     locationAccuracyM: numeric('location_accuracy_m', { precision: 8, scale: 1 }),
     locationSource: locationSource('location_source').notNull(),
 
+    uploadId: uuid('upload_id'),
+    photoCount: smallint('photo_count').notNull().default(0),
+
     districtId: uuid('district_id').references(() => district.id),
     protectedAreaIds: uuid('protected_area_ids').array().notNull().default(emptyTextArray),
     isMarine: boolean('is_marine'),
@@ -197,6 +200,7 @@ export const report = pgTable(
     check('report_ui_language_check', sql`${t.uiLanguage} IN ('pap','nl','en','es')`),
     check('report_description_check', sql`char_length(${t.description}) <= 2000`),
     check('report_severity_check', sql`${t.severity} BETWEEN 1 AND 5`),
+    check('report_photo_count_check', sql`${t.photoCount} BETWEEN 0 AND 5`),
     check(
       'rejection_needs_reason',
       sql`${t.status} <> 'rejected' OR ${t.rejectionReason} IS NOT NULL`,

@@ -131,6 +131,10 @@ CREATE TABLE report (
   location_accuracy_m   numeric(8,1),
   location_source       location_source NOT NULL,
 
+  -- photos waiting in rocan-incoming/{upload_id}/{1..photo_count} for media.process (§5.3, §9.2)
+  upload_id             uuid,
+  photo_count           smallint NOT NULL DEFAULT 0 CHECK (photo_count BETWEEN 0 AND 5),
+
   -- enrichment (§9.3)
   district_id           uuid REFERENCES district(id),
   protected_area_ids    uuid[] NOT NULL DEFAULT '{}',

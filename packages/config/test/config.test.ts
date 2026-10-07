@@ -1,12 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { CATEGORY_CODES } from '@rocan/core';
-import { UnsafeConfigurationError, assertSafeRuntime, loadEnv, loadRepoConfig } from '../src/index';
+import {
+  DEV_UPLOAD_TOKEN_SECRET,
+  UnsafeConfigurationError, assertSafeRuntime, loadEnv, loadRepoConfig } from '../src/index';
 
 const baseEnv = {
   DATABASE_URL: 'postgres://u:p@localhost:5432/db',
   S3_ACCESS_KEY_ID: 'k',
   S3_SECRET_ACCESS_KEY: 's',
   SMTP_URL: 'smtp://localhost:1025',
+  UPLOAD_TOKEN_SECRET: 'a-real-production-secret-that-is-long-enough-123',
 };
 
 describe('environment', () => {
@@ -17,6 +20,12 @@ describe('environment', () => {
     expect(() => assertSafeRuntime({ NODE_ENV: 'production', MOCK_MODE: true })).toThrow();
     expect(loadEnv({ ...baseEnv, NODE_ENV: 'production', MOCK_MODE: '0' }).MOCK_MODE).toBe(false);
     expect(loadEnv({ ...baseEnv, NODE_ENV: 'development', MOCK_MODE: '1' }).MOCK_MODE).toBe(true);
+  });
+
+  it('refuses the development upload secret in production', () => {
+    expect(() =>
+      loadEnv({ ...baseEnv, NODE_ENV: 'production', UPLOAD_TOKEN_SECRET: DEV_UPLOAD_TOKEN_SECRET }),
+    ).toThrow(/UPLOAD_TOKEN_SECRET/);
   });
 
   it('reports missing variables by name', () => {

@@ -10,6 +10,8 @@ const defaults: Record<string, string> = {
   MAILPIT_API: 'http://localhost:8025',
   MOCK_MODE: '1',
   NODE_ENV: 'test',
+  UPLOAD_TOKEN_SECRET: 'dev-only-upload-token-secret-change-me-0123456789',
+  TRUST_PROXY: '1',
 };
 
 export default function setup(): void {

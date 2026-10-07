@@ -26,7 +26,19 @@ export const EnvSchema = z.object({
   MAIL_FROM: z.string().default('ROCAN <no-reply@rocan.test>'),
   PUBLIC_BASE_URL: z.string().url().default('http://localhost:3000'),
   OPERATOR_NAME: z.string().default('ROCAN operator'),
+
+  // SPEC §5.3: signs the per-file upload URLs handed to the PWA.
+  UPLOAD_TOKEN_SECRET: z.string().min(32),
+  // SPEC §5.5: only trust X-Forwarded-For when a reverse proxy we control sets it.
+  TRUST_PROXY: bool,
+  RATE_LIMIT_REPORTS_PER_HOUR: z.coerce.number().int().positive().default(10),
+  RATE_LIMIT_REPORTS_PER_DAY: z.coerce.number().int().positive().default(30),
+  RATE_LIMIT_UPLOADS_PER_HOUR: z.coerce.number().int().positive().default(60),
+  RATE_LIMIT_TRACK_PER_HOUR: z.coerce.number().int().positive().default(30),
 });
+
+/** Development value from .env.example; refused in production. */
+export const DEV_UPLOAD_TOKEN_SECRET = 'dev-only-upload-token-secret-change-me-0123456789';
 
 export type Env = z.infer<typeof EnvSchema>;
 
@@ -35,9 +47,14 @@ export class UnsafeConfigurationError extends Error {
 }
 
 /** SPEC Appendix A: mock features must be impossible to enable in production. */
-export function assertSafeRuntime(env: Pick<Env, 'NODE_ENV' | 'MOCK_MODE'>): void {
+export function assertSafeRuntime(
+  env: Pick<Env, 'NODE_ENV' | 'MOCK_MODE'> & Partial<Pick<Env, 'UPLOAD_TOKEN_SECRET'>>,
+): void {
   if (env.NODE_ENV === 'production' && env.MOCK_MODE) {
     throw new UnsafeConfigurationError('MOCK_MODE=1 is not allowed when NODE_ENV=production');
+  }
+  if (env.NODE_ENV === 'production' && env.UPLOAD_TOKEN_SECRET === DEV_UPLOAD_TOKEN_SECRET) {
+    throw new UnsafeConfigurationError('UPLOAD_TOKEN_SECRET must be changed in production');
   }
 }
 
