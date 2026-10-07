@@ -1,0 +1,41 @@
+{
+  "name": "rocan",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev:mock": "bash scripts/dev-mock.sh",
+    "services:up": "docker compose up -d --wait",
+    "services:down": "docker compose down",
+    "db:migrate": "pnpm --filter @rocan/db migrate",
+    "db:generate": "pnpm --filter @rocan/db generate",
+    "db:seed": "pnpm --filter @rocan/db seed",
+    "db:reset": "pnpm --filter @rocan/db reset",
+    "storage:init": "pnpm --filter @rocan/media storage:init",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "turbo run typecheck",
+    "build": "turbo run build",
+    "test:unit": "vitest run --project unit",
+    "test:integration": "vitest run --project integration",
+    "test:e2e": "playwright test",
+    "test": "pnpm test:unit && pnpm test:integration"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "1.63.0",
+    "@types/node": "^22.15.0",
+    "eslint": "^10.12.0",
+    "fast-check": "^4.10.2",
+    "prettier": "^3.9.9",
+    "tsx": "^4.23.15",
+    "turbo": "^2.11.7",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71.1",
+    "vitest": "^5.0.3"
+  }
+}

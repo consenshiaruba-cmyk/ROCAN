@@ -1,0 +1,55 @@
+# Local services for development, tests and the mock environment (MOCK_TESTING §1).
+# Web and worker run on the host via `pnpm dev:mock` for fast reloads.
+#
+# Object storage: RustFS (S3-compatible, Apache-2.0, supports versioning + Object Lock).
+# It replaces MinIO, whose Docker images are no longer published (see docs/progress/phase-1.md).
+
+name: rocan
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: rocan
+      POSTGRES_PASSWORD: rocan
+      POSTGRES_DB: rocan
+    ports: ['5432:5432']
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U rocan -d rocan']
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  s3:
+    image: rustfs/rustfs:1.0.1
+    environment:
+      RUSTFS_ACCESS_KEY: rocan
+      RUSTFS_SECRET_KEY: rocan-dev-secret
+      RUSTFS_CONSOLE_ENABLE: 'true'
+      # Access logging stays off: upload requests must not leave client addresses behind (SPEC §13.1).
+      RUSTFS_OBS_LOGGER_LEVEL: warn
+    ports: ['9000:9000', '9001:9001']
+    volumes: [s3data:/data]
+    healthcheck:
+      test: ['CMD', 'curl', '-fsS', 'http://localhost:9000/health']
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  mailpit:
+    image: axllent/mailpit:v1.31.4
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: '1'
+      MP_SMTP_AUTH_ALLOW_INSECURE: '1'
+      MP_MAX_MESSAGES: '5000'
+    ports: ['1025:1025', '8025:8025']
+    healthcheck:
+      test: ['CMD', '/mailpit', 'readyz']
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  pgdata:
+  s3data:

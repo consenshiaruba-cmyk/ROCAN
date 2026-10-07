@@ -33,19 +33,34 @@ ROCAN is an anonymous reporting system for crimes against nature in Aruba. Citiz
 - Times stored in UTC; displayed in `America/Aruba`.
 - Small, focused commits with conventional prefixes (`feat(core): routing engine`, `test(scenarios): overdue-dow`).
 
-## Commands (to be created in Phase 1; keep this list accurate)
+## Commands
+Available now (Phase 1):
 ```bash
-pnpm dev:mock            # full local stack in mock mode
-pnpm db:reset            # drop, migrate, seed
-pnpm seed:demo           # synthetic 90-day dataset through the real API
-pnpm scenario <name>     # run one scenario from MOCK_TESTING §7
-pnpm lint && pnpm typecheck
+pnpm dev:mock            # services + buckets + db reset/seed + web (:3000) + worker (:3001), MOCK_MODE=1
+pnpm services:up         # docker compose services only (postgis, rustfs, mailpit)
+pnpm storage:init        # create buckets; the vault gets Object Lock (compliance)
+pnpm db:reset            # drop, migrate, seed (refuses NODE_ENV=production)
+pnpm db:generate         # drizzle-kit: new migration after editing packages/db/src/schema.ts
+pnpm lint && pnpm format:check && pnpm typecheck
 pnpm test:unit
-pnpm test:integration    # needs docker services
-pnpm test:scenarios [--fast]
-pnpm test:e2e
-pnpm eval:classifier     # real Claude API, manual only
+pnpm test:integration    # needs the docker services
+pnpm test:e2e            # Playwright; set PLAYWRIGHT_CHROMIUM_PATH to reuse a preinstalled Chromium
+pnpm build
 ```
+Planned (add them in the phase that builds them, then move them above):
+```bash
+pnpm seed:demo           # Phase 4+: synthetic dataset through the real API
+pnpm scenario <name>     # Phase 3+: one scenario from MOCK_TESTING §7
+pnpm test:scenarios      # Phase 3+
+pnpm eval:classifier     # Phase 4: real Claude API, manual only
+```
+
+## Repo gotchas (learned in Phase 1)
+- Packages export TypeScript source (`exports: ./src/index.ts`); use **extensionless relative imports** (Turbopack does not map `./x.js` to `x.ts`).
+- postgres.js: pass JSON as `${JSON.stringify(v)}::jsonb`, arrays as `${sql.array(v)}::type[]`, numerics as strings. `citext[]` comes back as a raw string unless cast to `text[]`.
+- After `dropAll()` + migrate, open a new connection: enum types are recreated and cached plans go stale.
+- Every schema change: edit `packages/db/src/schema.ts` **and** `db/schema.sql`, run `pnpm db:generate`; the schema-equivalence test fails until both match.
+- `next build` always runs with `NODE_ENV=production` (set in the web build script).
 
 ## Claude API usage (classifier)
 - Package `@anthropic-ai/sdk`, model from `CLASSIFIER_MODEL` (default `claude-opus-5-5`), adaptive thinking with `output_config.effort` from `CLASSIFIER_EFFORT` (default `low`).

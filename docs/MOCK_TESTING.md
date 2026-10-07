@@ -11,7 +11,7 @@ The mock system is built in **Phase 1** and extended in each later phase. Each p
 | Component | Real system | Mock / test stand-in |
 |---|---|---|
 | Database | PostgreSQL + PostGIS | Same, in Docker (`postgis/postgis:16-3.4`) |
-| Object storage + vault | AWS S3 with Object Lock + KMS | MinIO with versioning + Object Lock (compliance mode) enabled on `rocan-vault`; SSE via MinIO KMS (static key in dev) |
+| Object storage + vault | AWS S3 with Object Lock + KMS | RustFS (S3-compatible) with versioning + Object Lock (compliance mode) on `rocan-vault`; server-side encryption decided in Phase 3 |
 | Email to agencies / OM | SMTP provider | **Mailpit**: catches all mail, web UI at `http://localhost:8025`, REST API used by tests to read messages and click links |
 | AI classification | Claude API | **Mock classifier** (§3), deterministic |
 | Time | wall clock | **Controllable clock** (§4) |
@@ -22,12 +22,12 @@ The mock system is built in **Phase 1** and extended in each later phase. Each p
 ### 1.1 Start it
 ```bash
 pnpm i
-pnpm dev:mock          # docker compose up (postgis, minio, mailpit) + db:reset + web + worker, MOCK_MODE=1
+pnpm dev:mock          # docker compose up (postgis, rustfs, mailpit) + buckets + db:reset + web + worker, MOCK_MODE=1
 open http://localhost:3000        # citizen PWA
 open http://localhost:3000/staff  # staff portal (dev users below, TOTP disabled in mock mode)
 open http://localhost:3000/dev    # mock control panel
 open http://localhost:8025        # Mailpit: agency inboxes
-open http://localhost:9001        # MinIO console
+open http://localhost:9001        # RustFS console (object storage)
 ```
 
 ### 1.2 Dev users (seeded only when `MOCK_MODE=1`)
@@ -55,7 +55,7 @@ Only mounted when `MOCK_MODE=1` (and the server refuses to boot with `MOCK_MODE=
 - **Classifier**: provider (`mock` / `anthropic` / `none`), mock latency, failure rate, refusal rate.
 - **Data**: "reset DB", "seed demo (90 days, ~400 reports)", "run scenario ▸ (list)".
 - **Agencies**: per agency choose a behaviour profile (§6) and "process inbox now".
-- **Links**: Mailpit, MinIO, pg-boss dashboard, latest monthly report PDF.
+- **Links**: Mailpit, RustFS console, pg-boss dashboard, latest monthly report PDF.
 
 Everything on this page is also an HTTP endpoint under `/api/dev/*` (SPEC Appendix B) so scripts and tests use the same controls.
 
@@ -166,7 +166,7 @@ Default demo: DNM `diligent`, ACF `random`, DOW `slow`. The mock moderator appro
 |---|---|---|---|
 | Unit | Vitest | `packages/core` (state machine, routing, auto-dispatch decision, SLA, shortlist), scrubber, EXIF field filter, geo helpers | every push, < 30 s |
 | Property | fast-check | state machine (all state×event), routing invariants (always ≥1 primary; OM never routed; primary beats cc), SLA monotonicity | every push |
-| Integration | Vitest + Docker services | API handlers, worker jobs, DB constraints, MinIO Object Lock, Mailpit delivery | every push |
+| Integration | Vitest + Docker services | API handlers, worker jobs, DB constraints, vault Object Lock, Mailpit delivery | every push |
 | Scenarios | scenario runner | §7 list | every push (fast subset), full set nightly |
 | E2E | Playwright (Pixel 7, iPhone 14, desktop Chrome) | wizard in 4 languages, offline outbox, staff moderation, agency ack page, OM view | every push (Chromium), full matrix nightly |
 | PDF | pdf-parse text extraction + snapshot of the JSON snapshot | incident and monthly PDFs contain/omit the right strings; deterministic re-render | every push |
@@ -177,7 +177,7 @@ Default demo: DNM `diligent`, ACF `random`, DOW `slow`. The mock moderator appro
 
 ### 8.1 Privacy test suite (must stay green)
 1. Submit a report with headers `X-Forwarded-For: 203.0.113.7`, a distinctive User-Agent; then grep **all** captured logs (web, worker, proxy container) and every DB text/jsonb column for `203.0.113.7` and the UA string. Expect zero hits.
-2. Every derivative and thumbnail in MinIO: `exiftool -j` shows no Make/Model/Serial/Owner/Software/GPS/XMP/IPTC fields.
+2. Every derivative and thumbnail in object storage: `exiftool -j` shows no Make/Model/Serial/Owner/Software/GPS/XMP/IPTC fields.
 3. Every PDF and email: no unscrubbed PII from fixture descriptions; no original (un-redacted) image bytes (compare hashes).
 4. Public pages make no requests to third-party origins (Playwright request log allow-list = own origin only).
 5. `/api/v1/track` with wrong secret returns the same response shape and timing class as with an unknown code (no oracle).
@@ -211,7 +211,7 @@ Ordering in the report: B, then D.
 1. `pnpm i --frozen-lockfile`
 2. `pnpm lint && pnpm typecheck`
 3. `pnpm test:unit`
-4. Services: postgis, minio (with object-lock bootstrap script), mailpit as job services.
+4. Services: postgis, rustfs, mailpit as job services; `pnpm storage:init` creates the buckets (vault with Object Lock).
 5. `pnpm db:reset && pnpm test:integration && pnpm test:scenarios --fast`
 6. `pnpm build && pnpm test:e2e --project=chromium-mobile`
 7. Upload Playwright traces, generated PDFs and Mailpit message dumps as artifacts on failure.

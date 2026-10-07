@@ -1,0 +1,262 @@
+{
+ "type": "FeatureCollection",
+ "comment": "PLACEHOLDER hand-drawn approximation for development and tests only. Replace with official GIS (SPEC §16 item 7).",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "ARIKOK_NP",
+    "name": "Parke Nacional Arikok",
+    "kind": "national_park",
+    "managed_by": "ACF",
+    "is_marine": false,
+    "source": "PLACEHOLDER hand-drawn approximation for development and tests only. Replace with official GIS (SPEC §16 item 7)."
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -69.945,
+        12.53
+       ],
+       [
+        -69.925,
+        12.535
+       ],
+       [
+        -69.905,
+        12.525
+       ],
+       [
+        -69.895,
+        12.5
+       ],
+       [
+        -69.9,
+        12.48
+       ],
+       [
+        -69.93,
+        12.475
+       ],
+       [
+        -69.955,
+        12.48
+       ],
+       [
+        -69.96,
+        12.495
+       ],
+       [
+        -69.945,
+        12.53
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "PMA_NORTH",
+    "name": "Parke Marino Aruba: north (Arashi)",
+    "kind": "marine_park",
+    "managed_by": "ACF",
+    "is_marine": true,
+    "source": "PLACEHOLDER hand-drawn approximation for development and tests only. Replace with official GIS (SPEC §16 item 7)."
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -70.07,
+        12.603
+       ],
+       [
+        -70.052,
+        12.603
+       ],
+       [
+        -70.052,
+        12.625
+       ],
+       [
+        -70.07,
+        12.625
+       ],
+       [
+        -70.07,
+        12.603
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "PMA_MANGEL_HALTO",
+    "name": "Parke Marino Aruba: Mangel Halto",
+    "kind": "marine_park",
+    "managed_by": "ACF",
+    "is_marine": true,
+    "source": "PLACEHOLDER hand-drawn approximation for development and tests only. Replace with official GIS (SPEC §16 item 7)."
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -69.98,
+        12.452
+       ],
+       [
+        -69.96,
+        12.452
+       ],
+       [
+        -69.96,
+        12.468
+       ],
+       [
+        -69.98,
+        12.468
+       ],
+       [
+        -69.98,
+        12.452
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "PMA_SOUTH",
+    "name": "Parke Marino Aruba: south (Baby Beach)",
+    "kind": "marine_park",
+    "managed_by": "ACF",
+    "is_marine": true,
+    "source": "PLACEHOLDER hand-drawn approximation for development and tests only. Replace with official GIS (SPEC §16 item 7)."
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -69.895,
+        12.405
+       ],
+       [
+        -69.87,
+        12.405
+       ],
+       [
+        -69.87,
+        12.422
+       ],
+       [
+        -69.895,
+        12.422
+       ],
+       [
+        -69.895,
+        12.405
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "SPAANS_LAGOEN",
+    "name": "Spaans Lagoen (Ramsar)",
+    "kind": "ramsar",
+    "managed_by": null,
+    "is_marine": true,
+    "source": "PLACEHOLDER hand-drawn approximation for development and tests only. Replace with official GIS (SPEC §16 item 7)."
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -69.995,
+        12.482
+       ],
+       [
+        -69.975,
+        12.482
+       ],
+       [
+        -69.975,
+        12.5
+       ],
+       [
+        -69.995,
+        12.5
+       ],
+       [
+        -69.995,
+        12.482
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "BUBALI",
+    "name": "Bubali Bird Sanctuary",
+    "kind": "bird_sanctuary",
+    "managed_by": null,
+    "is_marine": false,
+    "source": "PLACEHOLDER hand-drawn approximation for development and tests only. Replace with official GIS (SPEC §16 item 7)."
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -70.052,
+        12.552
+       ],
+       [
+        -70.044,
+        12.552
+       ],
+       [
+        -70.044,
+        12.562
+       ],
+       [
+        -70.052,
+        12.562
+       ],
+       [
+        -70.052,
+        12.552
+       ]
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

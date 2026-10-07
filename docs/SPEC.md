@@ -159,7 +159,7 @@ Turning a switch on or off writes an `audit_log` entry and needs a typed reason.
 | DB | PostgreSQL 16 + PostGIS 3 | |
 | ORM / migrations | Drizzle ORM + drizzle-kit | Custom `geometry` column types; raw SQL for PostGIS functions |
 | Jobs | pg-boss | Same Postgres; cron schedules for digest/overdue/monthly |
-| Object storage | S3-compatible (AWS S3 or MinIO) | Vault bucket with Object Lock (compliance mode) + SSE-KMS |
+| Object storage | S3-compatible (AWS S3 in production; RustFS locally and in CI) | Vault bucket with Object Lock (compliance mode) + SSE-KMS |
 | Images | sharp | EXIF strip, resize, thumbnails, pHash input |
 | Face/plate detection (redaction suggestions) | Claude classification output boxes + manual redaction tool | No third-party face service; boxes are suggestions a moderator confirms |
 | AI | Anthropic TypeScript SDK (`@anthropic-ai/sdk`), model `claude-opus-5-5` | Structured outputs via Zod (§11) |
@@ -199,7 +199,7 @@ rocan/
 ├─ fixtures/               # aruba-places.yaml, images/, classifier-eval/
 ├─ db/schema.sql           # reference schema (source of truth for Phase 1)
 ├─ docs/                   # SPEC.md, MOCK_TESTING.md, runbooks
-├─ docker-compose.yml      # postgres+postgis, minio, mailpit, web, worker
+├─ docker-compose.yml      # postgres+postgis, rustfs (S3), mailpit; web + worker run via pnpm
 └─ CLAUDE.md
 ```
 
@@ -636,14 +636,14 @@ Data residency is a controller decision (§16). The system runs on any container
 
 Full detail in **`docs/MOCK_TESTING.md`**. Summary:
 
-- **One command local stack** (`pnpm dev:mock`): Postgres+PostGIS, MinIO, Mailpit (catches all outgoing email; each agency's inbox visible in a web UI), web, worker, all with `MOCK_MODE=1`.
+- **One command local stack** (`pnpm dev:mock`): Postgres+PostGIS, RustFS (S3-compatible storage), Mailpit (catches all outgoing email; each agency's inbox visible in a web UI), web, worker, all with `MOCK_MODE=1`.
 - **Mock classifier** (`CLASSIFIER_PROVIDER=mock`): deterministic output derived from fixture metadata or filename conventions, configurable latency/failures/refusals, so the whole pipeline runs with no API key.
 - **Controllable clock** (`packages/clock`): real, offset or frozen; the dev control panel and tests can jump forward to test the 7-day SLA, daily digests and the monthly OM report in seconds.
 - **Synthetic data generator**: realistic reports across Aruba (`fixtures/aruba-places.yaml`), images with EXIF (incl. GPS and fake camera serials, to prove stripping), configurable volume and time span.
 - **Scenario runner**: named end-to-end stories (turtle nest at Eagle Beach, DOW ignores a dumping report until overdue, offline burst from Arikok, photo with a child, injection attempt in description, month-end OM report…) each with assertions.
 - **Mock agency actors**: scripted DNM/ACF/DOW behaviour (fast, slow, never acknowledges) driven by clicking the real ack links from Mailpit.
 - **Dev control panel** (`/dev`): advance clock, run any cron job now, toggle automation switches, seed/reset data, open Mailpit, view the job queue.
-- **Test layers**: unit (core logic, exhaustive state machine and routing tables), integration (DB + worker + MinIO + Mailpit), e2e (Playwright on mobile viewports incl. offline), PDF content tests, security/privacy tests (no-IP-in-logs, EXIF-stripped, cross-agency access), accessibility (axe), classifier eval.
+- **Test layers**: unit (core logic, exhaustive state machine and routing tables), integration (DB + worker + object storage + Mailpit), e2e (Playwright on mobile viewports incl. offline), PDF content tests, security/privacy tests (no-IP-in-logs, EXIF-stripped, cross-agency access), accessibility (axe), classifier eval.
 
 ---
 
@@ -652,14 +652,14 @@ Full detail in **`docs/MOCK_TESTING.md`**. Summary:
 Eight phases. Each ends with green CI and the listed acceptance criteria demonstrated by automated tests (and, where noted, by a scenario in the mock system). Do not start a phase before the previous one's criteria pass. Claude Code: see `CLAUDE.md` for working rules.
 
 ### Phase 1: Foundation and mock environment
-Build: monorepo (§4.3), TypeScript strict, lint/format, Vitest, Playwright skeleton; `docker-compose.yml` with postgis, minio (buckets incl. Object Lock vault), mailpit; Drizzle schema + migrations matching `db/schema.sql`; seed from `config/*.yaml` + placeholder `config/areas/*.geojson` + districts; `packages/clock`; `packages/core` with the state machine (§8) and routing engine (§10.2); CI workflow (GitHub Actions) running lint, typecheck, unit, integration with services.
+Build: monorepo (§4.3), TypeScript strict, lint/format, Vitest, Playwright skeleton; `docker-compose.yml` with postgis, S3-compatible storage (buckets incl. Object Lock vault), mailpit; Drizzle schema + migrations matching `db/schema.sql`; seed from `config/*.yaml` + placeholder `config/areas/*.geojson` + districts; `packages/clock`; `packages/core` with the state machine (§8) and routing engine (§10.2); CI workflow (GitHub Actions) running lint, typecheck, unit, integration with services.
 Acceptance:
-- [ ] `pnpm i && pnpm dev:mock` brings up all services; `/healthz` and `/readyz` return 200.
-- [ ] `pnpm db:reset` creates schema + seeds 4 agencies, 13 categories, routing rules, districts, placeholder areas.
-- [ ] State machine: property test covers every (state, event) pair; invalid pairs throw.
-- [ ] Routing: table-driven test for every place in `fixtures/aruba-places.yaml` × its `likely` categories matches expected agencies/roles (expected table committed).
-- [ ] Clock: frozen/offset modes proven by tests.
-- [ ] CI green on a clean checkout.
+- [x] `pnpm i && pnpm dev:mock` brings up all services; `/healthz` and `/readyz` return 200.
+- [x] `pnpm db:reset` creates schema + seeds 4 agencies, 13 categories, routing rules, districts, placeholder areas.
+- [x] State machine: property test covers every (state, event) pair; invalid pairs throw.
+- [x] Routing: table-driven test for every place in `fixtures/aruba-places.yaml` × its `likely` categories matches expected agencies/roles (expected table committed).
+- [x] Clock: frozen/offset modes proven by tests.
+- [x] CI green on a clean checkout.
 
 ### Phase 2: Citizen PWA and submission API
 Build: public pages (§5.1), wizard (§5.2), i18n in 4 languages, MapLibre map with Aruba bounds, presigned upload + report API (§5.3), tracking page, rate limiting (§5.5), privacy page.
@@ -753,7 +753,7 @@ These block launch (not development). The build proceeds with placeholders and c
 | Variable | Example | Notes |
 |---|---|---|
 | `DATABASE_URL` | `postgres://rocan:rocan@localhost:5432/rocan` | |
-| `S3_ENDPOINT`, `S3_REGION`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY` | MinIO in dev | |
+| `S3_ENDPOINT`, `S3_REGION`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY` | RustFS in dev/CI | |
 | `S3_BUCKET_INCOMING` / `_VAULT` / `_DERIVATIVES` / `_REPORTS` | `rocan-incoming` … | |
 | `VAULT_KMS_KEY_ID` | | SSE-KMS key for the vault |
 | `VAULT_LOCK_DAYS` | `1825` | Object Lock retention |

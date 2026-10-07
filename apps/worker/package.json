@@ -1,0 +1,18 @@
+{
+  "name": "@rocan/worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "start": "tsx src/main.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@rocan/clock": "workspace:*",
+    "@rocan/config": "workspace:*",
+    "@rocan/db": "workspace:*",
+    "@rocan/health": "workspace:*",
+    "@rocan/media": "workspace:*",
+    "pg-boss": "^12.37.0"
+  }
+}
