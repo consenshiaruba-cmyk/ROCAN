@@ -2,7 +2,7 @@
 import { loadRepoConfig } from '@rocan/config';
 import { dropAll, runMigrations } from '../migrate';
 import { seed } from '../seed';
-import { cliDb, isMockMode, main } from './common';
+import { cliDb, cliUrl, isMockMode, main } from './common';
 
 await main(async () => {
   if (process.env.NODE_ENV === 'production') throw new Error('db:reset is disabled in production');
@@ -10,7 +10,7 @@ await main(async () => {
   const first = cliDb();
   try {
     await dropAll(first.sql);
-    await runMigrations(first.sql);
+    await runMigrations(cliUrl());
   } finally {
     await first.sql.end();
   }

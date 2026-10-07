@@ -26,7 +26,7 @@ beforeAll(async () => {
   const url = new URL(process.env.DATABASE_URL!);
   url.pathname = `/${DB}`;
   sql = createDb(url.toString(), { max: 2 }).sql;
-  await runMigrations(sql);
+  await runMigrations(url.toString());
   await seed(sql, loadRepoConfig(), { mockMode: false });
 });
 afterAll(async () => {

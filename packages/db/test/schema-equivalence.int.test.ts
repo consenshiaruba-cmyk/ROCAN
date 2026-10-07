@@ -11,9 +11,10 @@ let migrated: Sql;
 let reference: Sql;
 
 beforeAll(async () => {
-  migrated = createDb(await freshDatabase('rocan_it_eq_migrated'), { max: 1 }).sql;
+  const migratedUrl = await freshDatabase('rocan_it_eq_migrated');
+  migrated = createDb(migratedUrl, { max: 1 }).sql;
   reference = createDb(await freshDatabase('rocan_it_eq_reference'), { max: 1 }).sql;
-  await runMigrations(migrated);
+  await runMigrations(migratedUrl);
   await reference.unsafe(readFileSync(join(REPO_ROOT, 'db/schema.sql'), 'utf8'));
 });
 afterAll(async () => {

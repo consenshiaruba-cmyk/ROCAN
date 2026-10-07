@@ -12,7 +12,7 @@ const config = loadRepoConfig();
 beforeAll(async () => {
   url = await freshDatabase(DB);
   sql = createDb(url, { max: 2 }).sql;
-  await runMigrations(sql);
+  await runMigrations(url);
 });
 afterAll(async () => {
   await sql.end();
@@ -114,7 +114,7 @@ describe('migrations + seed', () => {
 
   it('dropAll + migrate gives a clean, re-seedable database (db:reset path)', async () => {
     await dropAll(sql);
-    await runMigrations(sql);
+    await runMigrations(url);
     // Types were recreated, so cached statement plans are stale: reconnect like the CLI does.
     await sql.end();
     sql = createDb(url, { max: 2 }).sql;

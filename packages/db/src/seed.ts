@@ -53,8 +53,8 @@ export async function seed(sql: Sql, config: RepoConfig, opts: SeedOptions): Pro
     for (const c of config.categories) {
       await tx`
         INSERT INTO category (code, sort_order, name, description, severity_weight, is_marine, legal_refs)
-        VALUES (${c.code}, ${c.sort_order}, ${JSON.stringify(c.name)}::jsonb, ${JSON.stringify(c.description)}::jsonb,
-                ${String(c.severity_weight)}, ${c.is_marine}, ${JSON.stringify(c.legal_refs)}::jsonb)
+        VALUES (${c.code}, ${c.sort_order}, ${tx.json(c.name)}, ${tx.json(c.description)},
+                ${String(c.severity_weight)}, ${c.is_marine}, ${tx.json(c.legal_refs)})
         ON CONFLICT (code) DO UPDATE SET
           sort_order = EXCLUDED.sort_order, name = EXCLUDED.name,
           description = EXCLUDED.description, severity_weight = EXCLUDED.severity_weight,
@@ -100,7 +100,7 @@ export async function seed(sql: Sql, config: RepoConfig, opts: SeedOptions): Pro
         INSERT INTO routing_rule (priority, category_id, condition, agency_id, role, note, active)
         VALUES (${r.priority},
                 ${r.category === '*' ? null : tx`(SELECT id FROM category WHERE code = ${r.category})`},
-                ${JSON.stringify(r.when)}::jsonb,
+                ${tx.json(r.when)},
                 (SELECT id FROM agency WHERE code = ${r.agency}),
                 ${r.role}, ${r.note ?? null}, ${r.active})`;
     }
