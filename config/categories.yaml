@@ -1,0 +1,278 @@
+# Crime-against-nature categories and routing rules. Seeded into `category` and
+# `routing_rule` (SPEC §10). Admins can edit them later in the staff portal.
+#
+# TRANSLATIONS: the Papiamento (pap) strings are drafts and need a native-speaker
+#   review before launch (SPEC §16, item 5). Spanish (es) needs the same check.
+# LEGAL REFERENCES: every `legal_refs` entry is `verified: false` until a jurist
+#   confirms the law and article (SPEC §16, item 4). The incident PDF only prints
+#   verified references; unverified ones appear in the staff portal with a warning.
+# severity_weight feeds the OM shortlist score (SPEC §12.4.3).
+
+categories:
+  - code: ILLEGAL_DUMPING
+    sort_order: 1
+    severity_weight: 0.55
+    is_marine: false
+    name:
+      pap: Tira sushi ilegal
+      nl: Illegale stort van afval
+      en: Illegal dumping of waste
+      es: Vertido ilegal de basura
+    description:
+      en: Household, construction or bulk waste, tyres, car wrecks or green waste left in nature, cunucu, beaches or roadsides.
+      nl: Huishoudelijk afval, bouwafval, grofvuil, banden, autowrakken of tuinafval achtergelaten in de natuur, cunucu, op stranden of langs de weg.
+      pap: Sushi di cas, sushi di construccion, banda, auto bieu of sushi di hardin tira den naturalesa, cunucu, na playa of banda di caminda.
+      es: Basura doméstica, escombros, neumáticos, chatarra de autos o restos de jardín abandonados en la naturaleza, el cunucu, playas o bordes de camino.
+    legal_refs:
+      - { law: "Landsverordening / regelgeving afvalstoffen (verify current instrument)", article: null, verified: false }
+      - { law: "Algemene Politieverordening — stortverbod (verify)", article: null, verified: false }
+
+  - code: POLLUTION_SPILL
+    sort_order: 2
+    severity_weight: 0.85
+    is_marine: false
+    name:
+      pap: Contaminacion (zeta, quimico, awa sushi)
+      nl: Vervuiling (olie, chemicaliën, afvalwater)
+      en: Pollution (oil, chemicals, sewage)
+      es: Contaminación (aceite, químicos, aguas residuales)
+    description:
+      en: Oil or fuel spills, chemical discharge, sewage or wastewater flowing into the ground, a wetland or the sea.
+      nl: Olie- of brandstoflekkage, lozing van chemicaliën, rioolwater of afvalwater in de bodem, een wetland of de zee.
+      pap: Zeta of gasolin cu ta lek, quimico, awa di rioleering of awa sushi cu ta corre den tera, salina of laman.
+      es: Derrames de aceite o combustible, descargas químicas, aguas negras o residuales vertidas al suelo, un humedal o el mar.
+    legal_refs:
+      - { law: "Hinderverordening (verify)", article: null, verified: false }
+      - { law: "Wetboek van Strafrecht van Aruba — milieudelicten (verify articles)", article: null, verified: false }
+
+  - code: ILLEGAL_BURNING
+    sort_order: 3
+    severity_weight: 0.60
+    is_marine: false
+    name:
+      pap: Kima ilegal
+      nl: Illegale verbranding
+      en: Illegal burning
+      es: Quema ilegal
+    description:
+      en: Burning waste, tyres, cables or vegetation in the open. If the fire is active and dangerous, call 911 first.
+      nl: Afval, banden, kabels of vegetatie in de open lucht verbranden. Is het vuur actief en gevaarlijk, bel eerst 911.
+      pap: Kima sushi, banda, cabel of mondi na aire liber. Si e candela ta activo y peligroso, yama 911 prome.
+      es: Quema de basura, neumáticos, cables o vegetación al aire libre. Si el fuego está activo y es peligroso, llame primero al 911.
+    legal_refs:
+      - { law: "Algemene Politieverordening — verbranden in de open lucht (verify)", article: null, verified: false }
+
+  - code: CONSTRUCTION_CLEARING
+    sort_order: 4
+    severity_weight: 0.80
+    is_marine: false
+    name:
+      pap: Construccion of limpiamento di tereno ilegal
+      nl: Illegale bouw of ontginning van terrein
+      en: Illegal construction or land clearing
+      es: Construcción o desmonte ilegal
+    description:
+      en: Bulldozing, clearing vegetation, fencing or building in a protected area, on dunes or the coast without visible permits.
+      nl: Bulldozeren, vegetatie verwijderen, afrasteren of bouwen in een beschermd gebied, op duinen of aan de kust zonder zichtbare vergunning.
+      pap: Bulldozer, kita mondi, traha trankera of construi den un area protehá, riba duna of na costa sin permiso visibel.
+      es: Uso de excavadoras, desmonte, cercado o construcción en un área protegida, dunas o costa sin permisos visibles.
+    legal_refs:
+      - { law: "Landsverordening ruimtelijke ontwikkeling (LRO) (verify)", article: null, verified: false }
+      - { law: "Natuurbeschermingsverordening (verify articles)", article: null, verified: false }
+
+  - code: SAND_STONE_EXTRACTION
+    sort_order: 5
+    severity_weight: 0.65
+    is_marine: false
+    name:
+      pap: Saca santo, piedra of coral ilegal
+      nl: Illegale zand-, steen- of koraalwinning
+      en: Illegal sand, stone or coral rubble extraction
+      es: Extracción ilegal de arena, piedra o coral
+    description:
+      en: Removing sand from beaches or dunes, quarrying stone or taking coral rubble by truck or by hand.
+      nl: Zand weghalen van stranden of duinen, steen afgraven of koraalpuin meenemen, per vrachtwagen of met de hand.
+      pap: Saca santo for di playa of duna, kap piedra of hiba coral morto, cu truck of cu man.
+      es: Sacar arena de playas o dunas, extraer piedra o llevarse restos de coral, en camión o a mano.
+    legal_refs:
+      - { law: "Natuurbeschermingsverordening (verify)", article: null, verified: false }
+
+  - code: OFF_ROAD_DAMAGE
+    sort_order: 6
+    severity_weight: 0.45
+    is_marine: false
+    name:
+      pap: Daño pa vehiculo fuera di caminda
+      nl: Schade door off-road voertuigen
+      en: Off-road vehicle damage
+      es: Daños por vehículos fuera de camino
+    description:
+      en: ATVs, UTVs, jeeps or motorbikes driving off marked roads, on dunes, beaches or through vegetation.
+      nl: Quads, UTV's, jeeps of motoren die buiten gemarkeerde wegen rijden, op duinen, stranden of door vegetatie.
+      pap: ATV, UTV, jeep of moto cu ta core pafo di caminda marca, riba duna, playa of den mondi.
+      es: ATV, UTV, jeeps o motos circulando fuera de caminos marcados, sobre dunas, playas o vegetación.
+    legal_refs:
+      - { law: "Natuurbeschermingsverordening / parkregels Arikok (verify)", article: null, verified: false }
+
+  - code: MANGROVE_WETLAND
+    sort_order: 7
+    severity_weight: 0.85
+    is_marine: true
+    name:
+      pap: Daño na mangel of salina
+      nl: Schade aan mangroven of wetlands
+      en: Damage to mangroves or wetlands
+      es: Daño a manglares o humedales
+    description:
+      en: Cutting, filling or draining mangroves, salinas or lagoons (e.g. Spanish Lagoon, Mangel Halto, Bubali).
+      nl: Kappen, dempen of droogleggen van mangroven, zoutpannen of lagunes (bijv. Spaans Lagoen, Mangel Halto, Bubali).
+      pap: Corta, yena of seca mangel, salina of lagun (por ehempel Spaans Lagoen, Mangel Halto, Bubali).
+      es: Tala, relleno o drenaje de manglares, salinas o lagunas (p. ej. Spaans Lagoen, Mangel Halto, Bubali).
+    legal_refs:
+      - { law: "Natuurbeschermingsverordening (verify)", article: null, verified: false }
+      - { law: "Ramsar Convention — Spaans Lagoen site (context, not an offence provision)", article: null, verified: false }
+
+  - code: CORAL_REEF_DAMAGE
+    sort_order: 8
+    severity_weight: 0.80
+    is_marine: true
+    name:
+      pap: Daño na rif of coral
+      nl: Schade aan koraal of rif
+      en: Coral or reef damage
+      es: Daño a corales o arrecifes
+    description:
+      en: Anchoring on reefs, breaking or collecting coral, boat groundings, or touching and standing on coral.
+      nl: Ankeren op riffen, koraal breken of verzamelen, vastgelopen boten, of koraal aanraken en erop staan.
+      pap: Tira anker riba rif, kibra of piki coral, boto cu a vara, of mishi y para riba coral.
+      es: Fondeo sobre arrecifes, romper o recolectar coral, encallamientos, o tocar y pararse sobre el coral.
+    legal_refs:
+      - { law: "Natuurbeschermingsverordening / regels Parke Marino Aruba (verify)", article: null, verified: false }
+
+  - code: ILLEGAL_FISHING
+    sort_order: 9
+    severity_weight: 0.60
+    is_marine: true
+    name:
+      pap: Pisca ilegal
+      nl: Illegale visserij
+      en: Illegal fishing
+      es: Pesca ilegal
+    description:
+      en: Fishing in no-take zones, spearfishing with scuba, prohibited nets or traps, or catching protected species (e.g. parrotfish, sharks, rays).
+      nl: Vissen in verboden zones, speervissen met perslucht, verboden netten of fuiken, of beschermde soorten vangen (bijv. papegaaivis, haaien, roggen).
+      pap: Pisca den zona prohibi, tira harpun cu tanki, red of nasa prohibi, of piscamento di especie protehá (por ehempel gutu, tribon, raya).
+      es: Pesca en zonas vedadas, pesca submarina con tanque, redes o trampas prohibidas, o captura de especies protegidas (p. ej. pez loro, tiburones, rayas).
+    legal_refs:
+      - { law: "Visserijverordening (verify)", article: null, verified: false }
+      - { law: "Natuurbeschermingsverordening — beschermde soorten (verify)", article: null, verified: false }
+
+  - code: SEA_TURTLE
+    sort_order: 10
+    severity_weight: 0.95
+    is_marine: true
+    name:
+      pap: Turtuga di laman of su nèshi molestá
+      nl: Verstoring van zeeschildpadden of nesten
+      en: Sea turtle or nest disturbance
+      es: Perturbación de tortugas marinas o nidos
+    description:
+      en: Digging up or driving over nests, bright lights or fires near nesting beaches, harming, capturing or selling turtles or eggs.
+      nl: Nesten uitgraven of eroverheen rijden, fel licht of vuur bij nestelstranden, schildpadden of eieren verwonden, vangen of verkopen.
+      pap: Kab nèshi òf core riba nan, lus fuerte of candela cerca di playa di nèshi, hasi turtuga daño, cohe of bende turtuga of webo.
+      es: Desenterrar o pasar sobre nidos, luces o fogatas cerca de playas de anidación, herir, capturar o vender tortugas o huevos.
+    legal_refs:
+      - { law: "Natuurbeschermingsverordening — beschermde soorten (verify)", article: null, verified: false }
+      - { law: "SPAW Protocol / CITES (context)", article: null, verified: false }
+
+  - code: WILDLIFE_POACHING
+    sort_order: 11
+    severity_weight: 0.80
+    is_marine: false
+    name:
+      pap: Caza of captura ilegal di animal
+      nl: Stroperij of vangst van wilde dieren
+      en: Wildlife poaching or capture
+      es: Caza o captura ilegal de fauna
+    description:
+      en: Trapping, killing or selling protected animals (e.g. prikichi parakeet, shoco owl, cascabel rattlesnake, kododo lizard), or nest robbing.
+      nl: Vangen, doden of verkopen van beschermde dieren (bijv. prikichi, shoco, cascabel, kododo), of nesten leegroven.
+      pap: Cohe, mata of bende animal protehá (por ehempel prikichi, shoco, cascabel, kododo), of horta nèshi.
+      es: Captura, muerte o venta de animales protegidos (p. ej. prikichi, shoco, cascabel, kododo), o saqueo de nidos.
+    legal_refs:
+      - { law: "Natuurbeschermingsverordening — beschermde soorten (verify)", article: null, verified: false }
+      - { law: "Wetboek van Strafrecht van Aruba — dierenmishandeling (verify)", article: null, verified: false }
+
+  - code: INVASIVE_SPECIES
+    sort_order: 12
+    severity_weight: 0.50
+    is_marine: false
+    name:
+      pap: Soltamento di especie invasivo
+      nl: Uitzetten van invasieve soorten
+      en: Release of invasive species
+      es: Liberación de especies invasoras
+    description:
+      en: Releasing, breeding or selling invasive animals or plants (e.g. boa constrictor, lionfish farming, exotic pets).
+      nl: Uitzetten, fokken of verkopen van invasieve dieren of planten (bijv. boa constrictor, exotische huisdieren).
+      pap: Solta, cria of bende animal of mata invasivo (por ehempel boa, mascota exotico).
+      es: Liberar, criar o vender animales o plantas invasoras (p. ej. boa constrictor, mascotas exóticas).
+    legal_refs:
+      - { law: "Natuurbeschermingsverordening / invoerregels (verify)", article: null, verified: false }
+
+  - code: OTHER
+    sort_order: 13
+    severity_weight: 0.40
+    is_marine: false
+    name:
+      pap: Otro daño na naturalesa
+      nl: Andere schade aan de natuur
+      en: Other harm to nature
+      es: Otro daño a la naturaleza
+    description:
+      en: Anything else that harms nature in Aruba. A moderator will choose the right category.
+      nl: Al het andere dat de natuur op Aruba schaadt. Een moderator kiest de juiste categorie.
+      pap: Cualkier otro cos cu ta hasi naturalesa di Aruba daño. Un moderador lo scoge e categoria corecto.
+      es: Cualquier otra cosa que dañe la naturaleza de Aruba. Un moderador elegirá la categoría adecuada.
+    legal_refs: []
+
+# ---------------------------------------------------------------------------
+# Routing rules (SPEC §10.2)
+#
+# Every active rule whose `category` and `when` match a report contributes one
+# (agency, role). Results are merged per agency, and `primary` beats `cc`.
+# Rules run in `priority` order only so that the routing explanation in the PDF
+# lists them predictably; order does not change the outcome.
+#
+# Condition vocabulary (all keys optional, all must hold):
+#   in_area_managed_by: ACF        report lies in a protected_area managed by that agency
+#   not_in_area_managed_by: ACF
+#   in_area_kind: [ramsar, ...]    report lies in an area of one of these kinds
+#   is_marine: true|false          enrichment says the point is at sea / on the shoreline
+#   outside_protected_area: true
+#
+# A report with no primary after evaluation goes to DNM as primary (fallback)
+# and gets the flag `routing_fallback` so a moderator notices.
+# ---------------------------------------------------------------------------
+
+routing_rules:
+  # ACF-managed areas (Arikok, Parke Marino): ACF leads, DNM informed.
+  - { priority: 10, category: "*", when: { in_area_managed_by: ACF }, agency: ACF, role: primary, note: "Inside an ACF-managed park" }
+  - { priority: 11, category: "*", when: { in_area_managed_by: ACF }, agency: DNM, role: cc,      note: "DNM informed of park incidents" }
+
+  # Default: DNM leads outside ACF parks.
+  - { priority: 20, category: "*", when: { not_in_area_managed_by: ACF }, agency: DNM, role: primary, note: "DNM is the competent nature authority" }
+
+  # Dumping outside parks is a DOW clean-up job; DNM stays informed.
+  - { priority: 30, category: ILLEGAL_DUMPING, when: { outside_protected_area: true }, agency: DOW, role: primary, note: "Clean-up of public land" }
+  - { priority: 31, category: ILLEGAL_DUMPING, when: { in_area_managed_by: ACF },     agency: DOW, role: cc,      note: "DOW may need to support clean-up" }
+
+  # Infrastructure-related categories: DOW informed.
+  - { priority: 40, category: POLLUTION_SPILL,        when: {}, agency: DOW, role: cc, note: "Sewage / drainage infrastructure" }
+  - { priority: 41, category: ILLEGAL_BURNING,        when: {}, agency: DOW, role: cc, note: "Often linked to dumping sites" }
+  - { priority: 42, category: CONSTRUCTION_CLEARING,  when: {}, agency: DOW, role: cc, note: "Permits / public works" }
+  - { priority: 43, category: SAND_STONE_EXTRACTION,  when: {}, agency: DOW, role: cc, note: "Permits / public works" }
+
+  # Marine incidents near a park boundary: ACF informed even when outside it.
+  - { priority: 50, category: CORAL_REEF_DAMAGE, when: { is_marine: true, not_in_area_managed_by: ACF }, agency: ACF, role: cc, note: "Marine expertise (Parke Marino)" }
+  - { priority: 51, category: SEA_TURTLE,        when: { not_in_area_managed_by: ACF },                  agency: ACF, role: cc, note: "Turtle expertise" }
