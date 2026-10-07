@@ -2,7 +2,9 @@
 name: CI
 
 on:
+  # Branch pushes are covered by their pull request; only main runs on push.
   push:
+    branches: [main]
   pull_request:
 
 concurrency:
