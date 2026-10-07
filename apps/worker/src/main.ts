@@ -3,7 +3,7 @@
 
 import { PgBoss } from 'pg-boss';
 import { loadEnv } from '@rocan/config';
-import { createDb } from '@rocan/db';
+import { createDb, ensureQueues } from '@rocan/db';
 import { dbCheck, s3Check, smtpCheck } from '@rocan/health';
 import { createS3 } from '@rocan/media';
 import { startHealthServer } from './server';
@@ -18,6 +18,7 @@ boss.on('error', (err) => console.error('[worker] pg-boss error:', err.message))
 
 let bossStarted = false;
 await boss.start();
+await ensureQueues(boss);
 bossStarted = true;
 
 const server = startHealthServer(port, () => ({

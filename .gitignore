@@ -10,3 +10,4 @@ test-results/
 .env.local
 next-env.d.ts
 *.tsbuildinfo
+apps/web/public/vendor/

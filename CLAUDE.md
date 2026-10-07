@@ -44,8 +44,10 @@ pnpm db:generate         # drizzle-kit: new migration after editing packages/db/
 pnpm lint && pnpm format:check && pnpm typecheck
 pnpm test:unit
 pnpm test:integration    # needs the docker services
-pnpm test:e2e            # Playwright; set PLAYWRIGHT_CHROMIUM_PATH to reuse a preinstalled Chromium
+pnpm test:e2e            # Playwright (Pixel 7 + iPhone 14). PLAYWRIGHT_CHROMIUM_PATH reuses a preinstalled
+                         # Chromium; E2E_WEBKIT=0 runs the iPhone profile on Chromium where WebKit is missing
 pnpm build
+pnpm test:lighthouse     # after `pnpm build`: mobile performance ≥ 80 on public pages
 ```
 Planned (add them in the phase that builds them, then move them above):
 ```bash
@@ -57,10 +59,15 @@ pnpm eval:classifier     # Phase 4: real Claude API, manual only
 
 ## Repo gotchas (learned in Phase 1)
 - Packages export TypeScript source (`exports: ./src/index.ts`); use **extensionless relative imports** (Turbopack does not map `./x.js` to `x.ts`).
-- postgres.js: pass JSON as `${JSON.stringify(v)}::jsonb`, arrays as `${sql.array(v)}::type[]`, numerics as strings. `citext[]` comes back as a raw string unless cast to `text[]`.
+- `drizzle(client)` rewrites a postgres.js client's date/JSON parsers and serializers. Never hand the raw `sql` client to Drizzle: `createDb()` keeps them separate and `runMigrations(url)` opens its own connection. With the raw client, pass JSON as `${sql.json(v)}`, arrays as `${sql.array(v)}::type[]`, numerics as strings; `citext[]` comes back as a raw string unless cast to `text[]`.
 - After `dropAll()` + migrate, open a new connection: enum types are recreated and cached plans go stale.
 - Every schema change: edit `packages/db/src/schema.ts` **and** `db/schema.sql`, run `pnpm db:generate`; the schema-equivalence test fails until both match.
 - `next build` always runs with `NODE_ENV=production` (set in the web build script).
+- API handlers live in `apps/web/lib/api/*` as plain `(Request, deps) → Response` functions; route files only wire `apiDeps()`. Integration tests call the handlers directly (`apps/web/test/helpers.ts`).
+- `e2e/global-setup.ts` requests every route before the tests: Next dev compiles routes on first hit and reloads open pages. Add new routes to it.
+- Next.js' route announcer also has `role="alert"`: in Playwright, scope alerts to `main [role="alert"]`.
+- MapLibre's worker is copied to `public/vendor/` by `apps/web/scripts/vendor-maplibre.mjs` (run by `dev` and `build`).
+- Never `pkill -f` a pattern that also appears in your own shell command; it kills the shell.
 
 ## Claude API usage (classifier)
 - Package `@anthropic-ai/sdk`, model from `CLASSIFIER_MODEL` (default `claude-opus-5-5`), adaptive thinking with `output_config.effort` from `CLASSIFIER_EFFORT` (default `low`).

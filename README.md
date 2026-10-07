@@ -2,7 +2,7 @@
 
 Anonymous citizens upload a photo and a location on a map of Aruba. The system automatically classifies and routes each report to **Directie Natuur en Milieu (DNM)**, **Aruba Conservation Foundation (ACF)** and/or **Directie Openbare Werken (DOW)**, tracks whether they acknowledge it, and compiles a **monthly master report for OM Aruba**.
 
-> **Status:** Phase 1 of 8 (foundation and mock environment) is built. See [`docs/progress/phase-1.md`](docs/progress/phase-1.md).
+> **Status:** Phases 1–2 of 8 are built: foundation and mock environment, and the citizen PWA with the submission API. See [`docs/progress/`](docs/progress/).
 
 ## Run it locally
 Requires Node 22, pnpm 10 and Docker.
@@ -11,7 +11,7 @@ Requires Node 22, pnpm 10 and Docker.
 pnpm install
 pnpm dev:mock      # starts Postgres+PostGIS, S3 storage, Mailpit; seeds the DB; runs web + worker
 ```
-Then open http://localhost:3000 (web), http://localhost:3001/readyz (worker), http://localhost:8025 (Mailpit, all outgoing mail) and http://localhost:9001 (storage console).
+Then open http://localhost:3000 (citizen app; report something on a phone-sized window), http://localhost:3001/readyz (worker), http://localhost:8025 (Mailpit, all outgoing mail) and http://localhost:9001 (storage console).
 
 Tests: `pnpm test:unit`, `pnpm test:integration` (needs the Docker services), `pnpm test:e2e`.
 

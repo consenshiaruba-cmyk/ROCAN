@@ -24,6 +24,8 @@ env:
   SMTP_URL: smtp://localhost:1025
   MAILPIT_API: http://localhost:8025
   PUBLIC_BASE_URL: http://localhost:3000
+  UPLOAD_TOKEN_SECRET: dev-only-upload-token-secret-change-me-0123456789
+  TRUST_PROXY: '1'
 
 jobs:
   checks:
@@ -92,10 +94,12 @@ jobs:
         run: pnpm build
       - name: Integration tests
         run: pnpm test:integration
-      - name: Install Playwright Chromium
-        run: pnpm exec playwright install --with-deps chromium
-      - name: E2E (mobile Chromium)
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium webkit
+      - name: E2E (Pixel 7 on Chromium, iPhone 14 on WebKit)
         run: pnpm test:e2e
+      - name: Lighthouse (mobile performance ≥ 80)
+        run: pnpm test:lighthouse
       - name: Upload Playwright report
         if: failure()
         uses: actions/upload-artifact@v4

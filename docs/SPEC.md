@@ -229,9 +229,9 @@ Accessibility: WCAG 2.2 AA, large tap targets, works one-handed, readable in bri
 
 ### 5.3 Submission protocol (online)
 1. Client generates `idempotency_key` (UUIDv4) at wizard start.
-2. `POST /api/v1/uploads` with `{count, mimes[], sizes[]}` returns presigned PUT URLs into `rocan-incoming/{uploadId}/{n}` (max 15 MB each, 24 h lifecycle). Upload goes direct to storage.
+2. `POST /api/v1/uploads` with `{files: [{mime, size}]}` returns signed, same-origin PUT URLs (`/api/v1/uploads/{uploadId}/{n}?…&sig=…`, valid 1 h). The app checks size and magic bytes and streams each photo to `rocan-incoming/{uploadId}/{n}` (max 15 MB each, 24 h lifecycle). *(Changed in Phase 2 from presigned storage URLs: no storage CORS, no storage access logs holding client addresses; see `docs/progress/phase-2.md`.)*
 3. `POST /api/v1/reports` with `{idempotency_key, upload_id, client_created_at, location, accuracy, location_source, category_code?, description?, observed_at?, is_ongoing?, ui_language, offline: bool}`.
-4. Server validates (Zod + Aruba bounds + object existence + magic-byte check), creates `report` in `submitted`, returns `{public_code, follow_up_secret}`. Re-posting the same `idempotency_key` returns the same code (secret is **not** re-sent; client keeps it locally until the user has seen it).
+4. Server validates (Zod + Aruba bounds + object existence), creates `report` in `submitted`, returns `{public_code}`. The follow-up secret is generated **on the device** and sent with the report; the server stores only its argon2id hash, so a lost response never loses the secret. Re-posting the same `idempotency_key` returns the same code.
 5. Server enqueues `report.ingest`.
 
 ### 5.4 Offline mode
@@ -664,12 +664,12 @@ Acceptance:
 ### Phase 2: Citizen PWA and submission API
 Build: public pages (§5.1), wizard (§5.2), i18n in 4 languages, MapLibre map with Aruba bounds, presigned upload + report API (§5.3), tracking page, rate limiting (§5.5), privacy page.
 Acceptance:
-- [ ] Playwright (Pixel 7 + iPhone 14 viewports): complete a report in each language; receive code + secret; `/track` shows "Received".
-- [ ] Pin outside Aruba (each `outside_points` fixture) is blocked client-side and rejected server-side (400).
-- [ ] Re-POST with same `idempotency_key` returns the same `public_code`; DB has one row.
-- [ ] 11th report within an hour from the same connection gets 429.
-- [ ] axe: no serious/critical violations on all public pages.
-- [ ] Lighthouse PWA installable; performance ≥ 80 on mobile emulation.
+- [x] Playwright (Pixel 7 + iPhone 14 viewports): complete a report in each language; receive code + secret; `/track` shows "Received".
+- [x] Pin outside Aruba (each `outside_points` fixture) is blocked client-side and rejected server-side (400).
+- [x] Re-POST with same `idempotency_key` returns the same `public_code`; DB has one row.
+- [x] 11th report within an hour from the same connection gets 429.
+- [x] axe: no serious/critical violations on all public pages.
+- [x] Lighthouse PWA installable; performance ≥ 80 on mobile emulation.
 
 ### Phase 3: Offline mode, media pipeline and evidence vault
 Build: service worker + precache + Aruba tile pack; encrypted IndexedDB outbox with Background Sync / foreground flush; worker with `report.ingest`, `media.process` (§9.2); vault with Object Lock; derivative generation.

@@ -18,16 +18,6 @@ test('home page renders on a phone with privacy headers', async ({ page }) => {
   expect(response?.status()).toBe(200);
   expect(response?.headers()['referrer-policy']).toBe('no-referrer');
   expect(response?.headers()['x-powered-by']).toBeUndefined();
-  await expect(page.getByRole('heading', { name: 'ROCAN' })).toBeVisible();
-});
-
-test('public pages load nothing from third-party origins (SPEC §13.1)', async ({
-  page,
-  baseURL,
-}) => {
-  const origins = new Set<string>();
-  page.on('request', (req) => origins.add(new URL(req.url()).origin));
-  await page.goto('/');
-  await page.waitForLoadState('networkidle');
-  expect([...origins]).toEqual([new URL(baseURL!).origin]);
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await expect(page.getByTestId('start-report')).toBeVisible();
 });

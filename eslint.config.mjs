@@ -23,6 +23,7 @@ export default tseslint.config(
       '**/next-env.d.ts',
       'packages/db/migrations/**',
       'playwright-report/**',
+      'apps/web/public/vendor/**',
       'test-results/**',
     ],
   },
@@ -35,6 +36,17 @@ export default tseslint.config(
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/consistent-type-imports': 'error',
     },
+  },
+  {
+    // Service worker globals.
+    files: ['apps/web/public/sw.js'],
+    languageOptions: {
+      globals: { self: 'readonly', caches: 'readonly', fetch: 'readonly', URL: 'readonly' },
+    },
+  },
+  {
+    files: ['scripts/**/*.mjs', 'apps/*/scripts/**/*.mjs'],
+    languageOptions: { globals: { setTimeout: 'readonly', fetch: 'readonly' } },
   },
   {
     // The clock itself, and tests that measure real elapsed time.
