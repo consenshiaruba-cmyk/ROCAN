@@ -30,7 +30,7 @@ Status: **done** (SPEC §15 Phase 2, all acceptance criteria covered by automate
 
 Also covered: uploads reject non-images, oversize/size-mismatch bodies, tampered or expired URLs; wrong secret and unknown code give the same 404; withdrawal goes through `transition()` and keeps the audit chain valid; no client address stored anywhere in the database; translations have identical keys and placeholders.
 
-Totals: 344 unit, 66 integration, 30 e2e tests.
+Totals: 344 unit, 66 integration, 32 e2e tests.
 
 ## Decisions
 1. **Uploads go through the app, not straight to storage** (SPEC §5.3 said presigned storage URLs). Same-origin uploads need no storage CORS, keep the strict "own origin only" rule for the PWA, and avoid storage access logs that record client addresses. The app checks size and magic bytes before storing. Cost: upload bandwidth through the app, fine at the expected volume. SPEC §5.3 updated.
@@ -43,6 +43,7 @@ Totals: 344 unit, 66 integration, 30 e2e tests.
 8. **Tracking attempts are rate limited** (30/hour per connection) against guessing.
 9. **Drizzle and the raw client are separate connections.** `drizzle(client)` rewrites postgres.js parsers and serializers; sharing one client made raw queries return strings for dates and double-encode JSON. This also removes the Phase 1 workarounds.
 10. The production server refuses the development `UPLOAD_TOKEN_SECRET`.
+12. **Forms must work before the page has hydrated.** CI on WebKit caught the track form losing typed text and reloading when submitted while scripts were still loading (as on a slow phone). The form now uses uncontrolled inputs, keeps its submit button disabled until hydrated, and uses POST so a native submit can never put the secret in the URL. A regression test throttles script loading.
 11. The privacy page says "a person checks the result before anything is sent", which holds while auto-dispatch is off. **If the switch is turned on, this text must change.**
 
 ## Notes for Phase 3

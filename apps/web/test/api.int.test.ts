@@ -390,16 +390,21 @@ describe('privacy', () => {
     const ip = '203.0.113.77';
     const body = reportBody(await upload(ip));
     await postReport(req('/api/v1/reports', body, ip), stack.deps);
-    const hits = await stack.deps.sql`
-      SELECT table_name, column_name FROM information_schema.columns
-      WHERE table_schema IN ('public', 'pgboss') AND data_type IN ('text', 'jsonb', 'character varying', 'USER-DEFINED')`;
-    for (const { table_name, column_name } of hits) {
-      const [found] = await stack.deps.sql
-        .unsafe(
-          `SELECT count(*)::int AS n FROM ${table_name.startsWith('job') || table_name === 'queue' ? 'pgboss.' : ''}"${table_name}" WHERE "${column_name}"::text LIKE '%203.0.113.77%'`,
-        )
-        .catch(() => [{ n: 0 }]);
-      expect(found!.n, `${table_name}.${column_name}`).toBe(0);
+    const columns = await stack.deps.sql<
+      { table_schema: string; table_name: string; column_name: string }[]
+    >`
+      SELECT c.table_schema, c.table_name, c.column_name
+      FROM information_schema.columns c
+      JOIN information_schema.tables t ON t.table_schema = c.table_schema AND t.table_name = c.table_name
+      WHERE c.table_schema IN ('public', 'pgboss') AND t.table_type = 'BASE TABLE'
+        AND c.data_type IN ('text', 'jsonb', 'json', 'character varying', 'USER-DEFINED', 'ARRAY', 'bytea')
+        AND c.udt_name <> 'geometry'`;
+    expect(columns.length).toBeGreaterThan(50);
+    for (const { table_schema, table_name, column_name } of columns) {
+      const [found] = await stack.deps.sql.unsafe(
+        `SELECT count(*)::int AS n FROM "${table_schema}"."${table_name}" WHERE "${column_name}"::text LIKE '%203.0.113.77%'`,
+      );
+      expect(found!.n, `${table_schema}.${table_name}.${column_name}`).toBe(0);
     }
   });
 });

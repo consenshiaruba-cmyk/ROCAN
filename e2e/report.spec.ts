@@ -151,3 +151,18 @@ test('photo step validates type and count', async ({ page, context, baseURL }) =
   ).toBeVisible();
   await expect(page.getByRole('img')).toHaveCount(5 + 1); // + header logo
 });
+
+test('the track form works when used while the page is still loading', async ({ page }) => {
+  await page.setExtraHTTPHeaders({ 'x-forwarded-for': uniqueIp() });
+  // Slow script delivery, as on a weak mobile connection.
+  await page.route('**/_next/static/**', async (route) => {
+    await new Promise((r) => setTimeout(r, 1500));
+    await route.continue();
+  });
+  await page.goto('/track', { waitUntil: 'commit' });
+  await page.getByTestId('track-code').fill('RC-0000-0000');
+  await page.getByTestId('track-secret').fill('abandon ability able about above absent');
+  await page.getByTestId('track-submit').click();
+  await expect(page.locator('main [role="alert"]')).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByTestId('track-code')).toHaveValue('RC-0000-0000');
+});

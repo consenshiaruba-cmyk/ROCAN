@@ -2,7 +2,7 @@
 
 // SPEC §5.1 /track: status by code + secret. The secret never goes into the URL.
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useFormatter, useTranslations } from 'next-intl';
 import type { CitizenStatus } from '@rocan/core';
 import { loadLastReport } from '../lib/client/submit';
@@ -18,19 +18,29 @@ interface View {
 export function TrackForm() {
   const t = useTranslations('track');
   const format = useFormatter();
-  const [code, setCode] = useState('');
-  const [secret, setSecret] = useState('');
+  // Uncontrolled inputs: text typed while the page is still loading survives hydration.
+  const codeRef = useRef<HTMLInputElement>(null);
+  const secretRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<'notFound' | 'rateLimited' | null>(null);
   const [view, setView] = useState<View | null>(null);
   const [withdrawn, setWithdrawn] = useState(false);
+  // Until React has hydrated, a click would do a native form submit and reload the page.
+  const [hydrated, setHydrated] = useState(false);
 
   // Prefill from the report just sent on this device.
   useEffect(() => {
+    setHydrated(true);
     const last = loadLastReport();
-    if (last) {
-      setCode(last.code);
-      setSecret(last.secret);
+    if (
+      last &&
+      codeRef.current &&
+      secretRef.current &&
+      !codeRef.current.value &&
+      !secretRef.current.value
+    ) {
+      codeRef.current.value = last.code;
+      secretRef.current.value = last.secret;
     }
   }, []);
 
@@ -41,7 +51,10 @@ export function TrackForm() {
       const res = await fetch(path, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ code, secret }),
+        body: JSON.stringify({
+          code: codeRef.current?.value ?? '',
+          secret: secretRef.current?.value ?? '',
+        }),
         cache: 'no-store',
       });
       if (res.status === 429) setError('rateLimited');
@@ -62,6 +75,8 @@ export function TrackForm() {
       <p>{t('intro')}</p>
       <form
         className="stack"
+        // Never GET: a native submit must not put the secret in the URL or history.
+        method="post"
         onSubmit={async (e) => {
           e.preventDefault();
           setWithdrawn(false);
@@ -71,8 +86,8 @@ export function TrackForm() {
         <label className="field">
           <span>{t('code')}</span>
           <input
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
+            ref={codeRef}
+            name="code"
             placeholder={t('codePlaceholder')}
             autoCapitalize="characters"
             autoComplete="off"
@@ -84,8 +99,8 @@ export function TrackForm() {
         <label className="field">
           <span>{t('secret')}</span>
           <input
-            value={secret}
-            onChange={(e) => setSecret(e.target.value)}
+            ref={secretRef}
+            name="secret"
             autoCapitalize="none"
             autoComplete="off"
             spellCheck={false}
@@ -96,7 +111,7 @@ export function TrackForm() {
         <button
           type="submit"
           className="btn btn-primary btn-block"
-          disabled={busy}
+          disabled={busy || !hydrated}
           data-testid="track-submit"
         >
           {busy ? t('checking') : t('check')}
