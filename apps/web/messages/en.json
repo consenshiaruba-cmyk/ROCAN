@@ -1,0 +1,173 @@
+{
+  "common": {
+    "appName": "ROCAN",
+    "tagline": "Report harm to nature in Aruba",
+    "language": "Language",
+    "languages": { "pap": "Papiamento", "nl": "Nederlands", "en": "English", "es": "Español" },
+    "nav": {
+      "home": "Home",
+      "report": "Report",
+      "track": "Track a report",
+      "about": "About",
+      "privacy": "Privacy"
+    },
+    "emergency": "Danger to people or an active fire? Call 911 first.",
+    "back": "Back",
+    "next": "Next",
+    "skip": "Skip to content",
+    "draftNotice": "Some texts are drafts awaiting review."
+  },
+  "home": {
+    "title": "Seen harm to nature? Report it anonymously.",
+    "intro": "Illegal dumping, damaged mangroves, disturbed turtle nests, reef damage, poaching: send a photo and the location, and we pass it on to the responsible agency.",
+    "cta": "Report harm to nature",
+    "track": "Already reported? Check the status",
+    "howTitle": "How it works",
+    "how1": "Take one or more photos. Don't put yourself at risk.",
+    "how2": "Mark the place on the map of Aruba.",
+    "how3": "Choose what you saw and send. No name, no account.",
+    "how4": "You get a code and a secret to follow your report."
+  },
+  "wizard": {
+    "title": "New report",
+    "stepOf": "Step {step} of {total}",
+    "steps": {
+      "photos": "Photos",
+      "location": "Location",
+      "what": "What did you see?",
+      "review": "Review & send"
+    },
+    "photos": {
+      "intro": "Add 1 to {max} photos of what you saw.",
+      "hint": "Avoid faces and license plates if you can. Don't put yourself at risk.",
+      "take": "Take a photo",
+      "choose": "Choose from gallery",
+      "remove": "Remove photo {n}",
+      "count": "{count, plural, =0 {No photos yet} one {1 photo} other {# photos}}",
+      "tooMany": "You can add at most {max} photos.",
+      "tooLarge": "{name} is larger than 15 MB.",
+      "wrongType": "{name} is not a supported photo (JPEG, PNG, WebP or HEIC).",
+      "needOne": "Add at least one photo to continue.",
+      "alt": "Photo {n} of the report"
+    },
+    "location": {
+      "intro": "Where did it happen? Use your location or tap the map to place the pin. You can drag the pin.",
+      "useGps": "Use my location",
+      "locating": "Finding your location…",
+      "gpsDenied": "Location is not available. Tap the map or enter coordinates.",
+      "mapLabel": "Map of Aruba. Tap to place the pin.",
+      "mapUnavailable": "The map can't be shown on this device. Use your location or enter coordinates.",
+      "manual": "Enter coordinates",
+      "lat": "Latitude",
+      "lon": "Longitude",
+      "setManual": "Set location",
+      "selected": "Selected: {lat}, {lon}",
+      "accuracy": "Accuracy about {meters} m",
+      "outside": "This location is outside Aruba.",
+      "needPin": "Choose a location to continue.",
+      "provisional": "Protected-area borders on the map are provisional."
+    },
+    "what": {
+      "intro": "Choose what fits best.",
+      "notSure": "Not sure",
+      "notSureHint": "A moderator will choose the right category.",
+      "needCategory": "Choose a category or “Not sure” to continue.",
+      "description": "Description (optional)",
+      "descriptionHint": "Describe what you saw. Don't include names, phone numbers or license plates.",
+      "chars": "{count} / {max}",
+      "when": "When did it happen?",
+      "whenNow": "Now",
+      "whenToday": "Earlier today",
+      "whenOther": "Another date",
+      "whenDate": "Date and time",
+      "ongoing": "Is it still going on?",
+      "yes": "Yes",
+      "no": "No",
+      "unknown": "Don't know"
+    },
+    "review": {
+      "intro": "Check your report before sending.",
+      "photos": "Photos",
+      "location": "Location",
+      "category": "Category",
+      "description": "Description",
+      "none": "None",
+      "consent": "I report in good faith. The photos may be used as evidence.",
+      "needConsent": "Please confirm to send.",
+      "send": "Send report",
+      "sending": "Sending… {done} of {total} photos uploaded",
+      "anonymous": "Your report is anonymous. We don't store your name, IP address or device."
+    },
+    "errors": {
+      "network": "Could not reach the server. Check your connection and try again.",
+      "rateLimited": "Too many reports from this connection. Please try again later.",
+      "outside": "This location is outside Aruba.",
+      "photos": "A photo could not be uploaded. Please try again.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "done": {
+    "title": "Thank you, your report was sent",
+    "intro": "Save this code and secret. They are the only way to follow your report. We can't recover them.",
+    "code": "Tracking code",
+    "secret": "Secret words",
+    "copy": "Copy code and secret",
+    "copied": "Copied",
+    "saveImage": "Save as image",
+    "imageTitle": "ROCAN report",
+    "track": "Check status",
+    "another": "Report something else",
+    "missing": "There is no recent report on this device.",
+    "warning": "Keep the secret to yourself. Anyone with the code and the secret can see the status of your report."
+  },
+  "track": {
+    "title": "Track your report",
+    "intro": "Enter the tracking code and the six secret words you received.",
+    "code": "Tracking code",
+    "codePlaceholder": "RC-XXXX-XXXX",
+    "secret": "Secret words",
+    "check": "Check status",
+    "checking": "Checking…",
+    "notFound": "No report found with this code and secret.",
+    "rateLimited": "Too many attempts. Please try again later.",
+    "status": "Status",
+    "timeline": "History",
+    "messages": "Messages from the moderators",
+    "statuses": {
+      "received": "Received",
+      "checking": "Being checked",
+      "sent": "Sent to the responsible agency",
+      "handling": "The agency is handling it",
+      "closed_action": "Closed: the agency took action",
+      "closed": "Closed",
+      "not_forwarded": "Not forwarded",
+      "combined": "Combined with an existing report"
+    },
+    "withdraw": "Withdraw report",
+    "withdrawConfirm": "Withdraw this report? This can't be undone.",
+    "withdrawn": "Your report was withdrawn."
+  },
+  "about": {
+    "title": "About ROCAN",
+    "p1": "ROCAN lets anyone report harm to nature in Aruba, anonymously and from their phone.",
+    "p2": "Each report is checked and sent to the responsible agency: the Directie Natuur en Milieu, the Aruba Conservation Foundation (for Arikok National Park and Parke Marino) or Directie Openbare Werken. Agencies are asked to confirm receipt within 7 days.",
+    "p3": "Every month a summary of all reports, and of how agencies responded, is sent to the Public Prosecutor's Office (OM Aruba).",
+    "p4": "ROCAN is not an emergency service. In an emergency, call 911."
+  },
+  "privacy": {
+    "title": "Privacy",
+    "intro": "ROCAN is built so we can't know who you are.",
+    "notStoredTitle": "What we never store",
+    "notStored": "Your name, phone number, email, IP address, browser or device details. There are no accounts and no trackers.",
+    "storedTitle": "What we store",
+    "stored": "Your photos, the location you chose, the category, your description and when you sent it. The time and place a photo was taken (from the photo itself) is kept as evidence. Other information hidden in photos, such as the camera model or serial number, is removed.",
+    "evidenceTitle": "Photos as evidence",
+    "evidence": "The original photos are locked away unchanged so they can serve as evidence. Agencies receive copies without hidden camera data, and faces or license plates can be blurred.",
+    "secretTitle": "Your code and secret",
+    "secret": "Only you have the secret words. We store a one-way fingerprint of them, so we can check them but not read them.",
+    "aiTitle": "Automatic sorting",
+    "ai": "Photos (without hidden camera data) and descriptions may be analysed automatically to suggest a category. A person checks the result before anything is sent.",
+    "retentionTitle": "How long",
+    "retention": "Reports that are not forwarded are deleted after 90 days. Other reports are kept for 5 years."
+  }
+}

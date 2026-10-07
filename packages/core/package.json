@@ -1,0 +1,19 @@
+{
+  "name": "@rocan/core",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@rocan/clock": "workspace:*",
+    "@scure/bip39": "^2.4.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "yaml": "^2.9.1"
+  }
+}

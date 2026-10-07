@@ -1,0 +1,8 @@
+pnpm-lock.yaml
+packages/db/migrations/
+db/schema.sql
+docs/
+*.md
+config/
+fixtures/
+.next/

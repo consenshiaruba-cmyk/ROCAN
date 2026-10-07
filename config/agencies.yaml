@@ -1,0 +1,39 @@
+# Receiving organisations. Seeded into the `agency` table (SPEC §7, §10).
+# Names are config values: change `official_name` here, re-run `pnpm db:seed`, nothing else changes.
+# Email addresses below are PLACEHOLDERS until intake agreements are signed (SPEC §16).
+
+agencies:
+  - code: DNM
+    short_name: DNM
+    # The context brief says "Dienst Natuur & Milieu"; the spec defaults to the name below.
+    # Confirm the current official name with the agency (SPEC §16, item 6).
+    official_name: Directie Natuur en Milieu
+    intake_emails: [meldingen-dnm@example.aw]
+    ack_sla_days: 7
+    receives_incidents: true
+    digest_enabled: true
+
+  - code: ACF
+    short_name: ACF
+    official_name: Aruba Conservation Foundation
+    # Manages Parke Nacional Arikok and Parke Marino Aruba.
+    intake_emails: [meldingen-acf@example.aw]
+    ack_sla_days: 7
+    receives_incidents: true
+    digest_enabled: true
+
+  - code: DOW
+    short_name: DOW
+    official_name: Directie Openbare Werken
+    intake_emails: [meldingen-dow@example.aw]
+    ack_sla_days: 7
+    receives_incidents: true
+    digest_enabled: true
+
+  - code: OM
+    short_name: OM Aruba
+    official_name: Openbaar Ministerie Aruba
+    intake_emails: [maandrapport-om@example.aw]
+    ack_sla_days: 14
+    receives_incidents: false   # OM receives only the monthly master report
+    digest_enabled: false

@@ -1,0 +1,40 @@
+# Named places used by the synthetic data generator and the scenario runner
+# (docs/MOCK_TESTING.md). Coordinates are APPROXIMATE (±200 m) and only good
+# enough for test data. They are not survey data and must never be used as
+# protected-area boundaries.
+#
+# `likely` lists the categories the generator favours at each place so the demo
+# data looks realistic. `area_hint` names the placeholder protected area the
+# point should fall inside; the geo tests (SPEC §9.3) assert on it.
+
+bounds:   # rough bounding box of Aruba incl. near-shore waters
+  min_lat: 12.40
+  max_lat: 12.63
+  min_lon: -70.07
+  max_lon: -69.86
+
+places:
+  - { name: Eagle Beach,               lat: 12.5545, lon: -70.0560, marine: false, area_hint: null,              likely: [SEA_TURTLE, OFF_ROAD_DAMAGE, ILLEGAL_DUMPING] }
+  - { name: Arashi Beach,              lat: 12.6095, lon: -70.0530, marine: false, area_hint: PMA_NORTH,         likely: [SEA_TURTLE, CORAL_REEF_DAMAGE] }
+  - { name: California Lighthouse,     lat: 12.6145, lon: -70.0510, marine: false, area_hint: null,              likely: [OFF_ROAD_DAMAGE, ILLEGAL_DUMPING] }
+  - { name: Malmok reef (offshore),    lat: 12.5985, lon: -70.0555, marine: true,  area_hint: null,              likely: [CORAL_REEF_DAMAGE, ILLEGAL_FISHING] }
+  - { name: Bubali Bird Sanctuary,     lat: 12.5560, lon: -70.0480, marine: false, area_hint: BUBALI,            likely: [MANGROVE_WETLAND, ILLEGAL_DUMPING, WILDLIFE_POACHING] }
+  - { name: Alto Vista,                lat: 12.5845, lon: -70.0090, marine: false, area_hint: null,              likely: [OFF_ROAD_DAMAGE, ILLEGAL_BURNING, ILLEGAL_DUMPING] }
+  - { name: Hooiberg,                  lat: 12.5330, lon: -69.9920, marine: false, area_hint: null,              likely: [CONSTRUCTION_CLEARING, WILDLIFE_POACHING] }
+  - { name: Arikok visitor centre,     lat: 12.4995, lon: -69.9500, marine: false, area_hint: ARIKOK_NP,         likely: [WILDLIFE_POACHING, OFF_ROAD_DAMAGE, ILLEGAL_DUMPING] }
+  - { name: Conchi (Natural Pool),     lat: 12.5235, lon: -69.9230, marine: false, area_hint: ARIKOK_NP,         likely: [OFF_ROAD_DAMAGE] }
+  - { name: Boca Prins,                lat: 12.4925, lon: -69.9050, marine: false, area_hint: ARIKOK_NP,         likely: [SEA_TURTLE, SAND_STONE_EXTRACTION, OFF_ROAD_DAMAGE] }
+  - { name: Spaans Lagoen,             lat: 12.4890, lon: -69.9850, marine: true,  area_hint: SPAANS_LAGOEN,     likely: [MANGROVE_WETLAND, POLLUTION_SPILL, ILLEGAL_FISHING] }
+  - { name: Mangel Halto,              lat: 12.4600, lon: -69.9690, marine: true,  area_hint: PMA_MANGEL_HALTO,  likely: [MANGROVE_WETLAND, CORAL_REEF_DAMAGE, ILLEGAL_FISHING] }
+  - { name: Savaneta,                  lat: 12.4500, lon: -69.9450, marine: false, area_hint: null,              likely: [ILLEGAL_DUMPING, ILLEGAL_BURNING] }
+  - { name: San Nicolas industrial,    lat: 12.4350, lon: -69.9050, marine: false, area_hint: null,              likely: [POLLUTION_SPILL, ILLEGAL_BURNING, ILLEGAL_DUMPING] }
+  - { name: Baby Beach,                lat: 12.4185, lon: -69.8825, marine: false, area_hint: PMA_SOUTH,         likely: [CORAL_REEF_DAMAGE, SEA_TURTLE] }
+  - { name: Parkietenbos area,         lat: 12.4920, lon: -70.0030, marine: false, area_hint: null,              likely: [ILLEGAL_BURNING, POLLUTION_SPILL, ILLEGAL_DUMPING] }
+  - { name: Tanki Leendert cunucu,     lat: 12.5580, lon: -70.0200, marine: false, area_hint: null,              likely: [ILLEGAL_DUMPING, CONSTRUCTION_CLEARING, INVASIVE_SPECIES] }
+  - { name: Santa Cruz cunucu,         lat: 12.5100, lon: -69.9700, marine: false, area_hint: null,              likely: [ILLEGAL_DUMPING, INVASIVE_SPECIES, WILDLIFE_POACHING] }
+
+# Points the validator must reject (outside Aruba) — used by negative tests.
+outside_points:
+  - { name: Curaçao (Willemstad), lat: 12.1091, lon: -68.9316 }
+  - { name: Open sea north,       lat: 12.8000, lon: -70.0000 }
+  - { name: Paraguaná, Venezuela, lat: 11.9500, lon: -70.0000 }

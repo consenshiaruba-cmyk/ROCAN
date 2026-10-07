@@ -1,0 +1,173 @@
+{
+  "common": {
+    "appName": "ROCAN",
+    "tagline": "Meld schade aan de natuur op Aruba",
+    "language": "Taal",
+    "languages": { "pap": "Papiamento", "nl": "Nederlands", "en": "English", "es": "Español" },
+    "nav": {
+      "home": "Home",
+      "report": "Melden",
+      "track": "Melding volgen",
+      "about": "Over",
+      "privacy": "Privacy"
+    },
+    "emergency": "Gevaar voor mensen of een actieve brand? Bel eerst 911.",
+    "back": "Terug",
+    "next": "Volgende",
+    "skip": "Naar de inhoud",
+    "draftNotice": "Sommige teksten zijn concepten die nog worden nagekeken."
+  },
+  "home": {
+    "title": "Schade aan de natuur gezien? Meld het anoniem.",
+    "intro": "Illegale stort, vernielde mangroven, verstoorde schildpaddennesten, schade aan het rif, stroperij: stuur een foto en de locatie, en wij geven het door aan de verantwoordelijke instantie.",
+    "cta": "Meld schade aan de natuur",
+    "track": "Al gemeld? Bekijk de status",
+    "howTitle": "Zo werkt het",
+    "how1": "Maak een of meer foto's. Breng jezelf niet in gevaar.",
+    "how2": "Geef de plek aan op de kaart van Aruba.",
+    "how3": "Kies wat je zag en verstuur. Geen naam, geen account.",
+    "how4": "Je krijgt een code en geheime woorden om je melding te volgen."
+  },
+  "wizard": {
+    "title": "Nieuwe melding",
+    "stepOf": "Stap {step} van {total}",
+    "steps": {
+      "photos": "Foto's",
+      "location": "Locatie",
+      "what": "Wat zag je?",
+      "review": "Controleren en versturen"
+    },
+    "photos": {
+      "intro": "Voeg 1 tot {max} foto's toe van wat je zag.",
+      "hint": "Vermijd gezichten en kentekens als dat kan. Breng jezelf niet in gevaar.",
+      "take": "Foto maken",
+      "choose": "Kiezen uit galerij",
+      "remove": "Foto {n} verwijderen",
+      "count": "{count, plural, =0 {Nog geen foto's} one {1 foto} other {# foto's}}",
+      "tooMany": "Je kunt maximaal {max} foto's toevoegen.",
+      "tooLarge": "{name} is groter dan 15 MB.",
+      "wrongType": "{name} is geen ondersteunde foto (JPEG, PNG, WebP of HEIC).",
+      "needOne": "Voeg minstens één foto toe om verder te gaan.",
+      "alt": "Foto {n} van de melding"
+    },
+    "location": {
+      "intro": "Waar gebeurde het? Gebruik je locatie of tik op de kaart om de speld te plaatsen. Je kunt de speld verslepen.",
+      "useGps": "Mijn locatie gebruiken",
+      "locating": "Locatie zoeken…",
+      "gpsDenied": "Locatie is niet beschikbaar. Tik op de kaart of voer coördinaten in.",
+      "mapLabel": "Kaart van Aruba. Tik om de speld te plaatsen.",
+      "mapUnavailable": "De kaart kan op dit toestel niet worden getoond. Gebruik je locatie of voer coördinaten in.",
+      "manual": "Coördinaten invoeren",
+      "lat": "Breedtegraad",
+      "lon": "Lengtegraad",
+      "setManual": "Locatie instellen",
+      "selected": "Gekozen: {lat}, {lon}",
+      "accuracy": "Nauwkeurigheid ongeveer {meters} m",
+      "outside": "Deze locatie ligt buiten Aruba.",
+      "needPin": "Kies een locatie om verder te gaan.",
+      "provisional": "De grenzen van beschermde gebieden op de kaart zijn voorlopig."
+    },
+    "what": {
+      "intro": "Kies wat het beste past.",
+      "notSure": "Weet ik niet",
+      "notSureHint": "Een moderator kiest de juiste categorie.",
+      "needCategory": "Kies een categorie of “Weet ik niet” om verder te gaan.",
+      "description": "Beschrijving (optioneel)",
+      "descriptionHint": "Beschrijf wat je zag. Vermeld geen namen, telefoonnummers of kentekens.",
+      "chars": "{count} / {max}",
+      "when": "Wanneer gebeurde het?",
+      "whenNow": "Nu",
+      "whenToday": "Eerder vandaag",
+      "whenOther": "Andere datum",
+      "whenDate": "Datum en tijd",
+      "ongoing": "Is het nog bezig?",
+      "yes": "Ja",
+      "no": "Nee",
+      "unknown": "Weet ik niet"
+    },
+    "review": {
+      "intro": "Controleer je melding voordat je die verstuurt.",
+      "photos": "Foto's",
+      "location": "Locatie",
+      "category": "Categorie",
+      "description": "Beschrijving",
+      "none": "Geen",
+      "consent": "Ik meld te goeder trouw. De foto's mogen als bewijs worden gebruikt.",
+      "needConsent": "Bevestig om te versturen.",
+      "send": "Melding versturen",
+      "sending": "Versturen… {done} van {total} foto's geüpload",
+      "anonymous": "Je melding is anoniem. We bewaren je naam, IP-adres en toestel niet."
+    },
+    "errors": {
+      "network": "De server is niet bereikbaar. Controleer je verbinding en probeer opnieuw.",
+      "rateLimited": "Te veel meldingen vanaf deze verbinding. Probeer het later opnieuw.",
+      "outside": "Deze locatie ligt buiten Aruba.",
+      "photos": "Een foto kon niet worden geüpload. Probeer het opnieuw.",
+      "generic": "Er ging iets mis. Probeer het opnieuw."
+    }
+  },
+  "done": {
+    "title": "Bedankt, je melding is verstuurd",
+    "intro": "Bewaar deze code en geheime woorden. Alleen daarmee kun je je melding volgen. We kunnen ze niet herstellen.",
+    "code": "Volgcode",
+    "secret": "Geheime woorden",
+    "copy": "Code en geheime woorden kopiëren",
+    "copied": "Gekopieerd",
+    "saveImage": "Opslaan als afbeelding",
+    "imageTitle": "ROCAN-melding",
+    "track": "Status bekijken",
+    "another": "Nog iets melden",
+    "missing": "Er is geen recente melding op dit toestel.",
+    "warning": "Houd de geheime woorden voor jezelf. Wie de code en de woorden heeft, kan de status van je melding zien."
+  },
+  "track": {
+    "title": "Volg je melding",
+    "intro": "Voer de volgcode en de zes geheime woorden in die je hebt gekregen.",
+    "code": "Volgcode",
+    "codePlaceholder": "RC-XXXX-XXXX",
+    "secret": "Geheime woorden",
+    "check": "Status bekijken",
+    "checking": "Bezig…",
+    "notFound": "Geen melding gevonden met deze code en geheime woorden.",
+    "rateLimited": "Te veel pogingen. Probeer het later opnieuw.",
+    "status": "Status",
+    "timeline": "Verloop",
+    "messages": "Berichten van de moderatoren",
+    "statuses": {
+      "received": "Ontvangen",
+      "checking": "Wordt gecontroleerd",
+      "sent": "Doorgestuurd naar de verantwoordelijke instantie",
+      "handling": "De instantie behandelt de melding",
+      "closed_action": "Afgesloten: de instantie heeft actie ondernomen",
+      "closed": "Afgesloten",
+      "not_forwarded": "Niet doorgestuurd",
+      "combined": "Samengevoegd met een bestaande melding"
+    },
+    "withdraw": "Melding intrekken",
+    "withdrawConfirm": "Deze melding intrekken? Dit kan niet ongedaan worden gemaakt.",
+    "withdrawn": "Je melding is ingetrokken."
+  },
+  "about": {
+    "title": "Over ROCAN",
+    "p1": "Met ROCAN kan iedereen schade aan de natuur op Aruba melden, anoniem en vanaf de telefoon.",
+    "p2": "Elke melding wordt gecontroleerd en doorgestuurd naar de verantwoordelijke instantie: de Directie Natuur en Milieu, de Aruba Conservation Foundation (voor Parke Nacional Arikok en Parke Marino) of de Directie Openbare Werken. Instanties wordt gevraagd de ontvangst binnen 7 dagen te bevestigen.",
+    "p3": "Elke maand gaat een overzicht van alle meldingen, en van hoe de instanties reageerden, naar het Openbaar Ministerie (OM Aruba).",
+    "p4": "ROCAN is geen noodnummer. Bel bij nood 911."
+  },
+  "privacy": {
+    "title": "Privacy",
+    "intro": "ROCAN is zo gebouwd dat wij niet kunnen weten wie je bent.",
+    "notStoredTitle": "Wat we nooit bewaren",
+    "notStored": "Je naam, telefoonnummer, e-mail, IP-adres, browser- of toestelgegevens. Er zijn geen accounts en geen trackers.",
+    "storedTitle": "Wat we wel bewaren",
+    "stored": "Je foto's, de gekozen locatie, de categorie, je beschrijving en wanneer je de melding verstuurde. Het tijdstip en de plek waarop een foto is genomen (uit de foto zelf) bewaren we als bewijs. Andere verborgen informatie in foto's, zoals het cameramodel of serienummer, wordt verwijderd.",
+    "evidenceTitle": "Foto's als bewijs",
+    "evidence": "De originele foto's worden ongewijzigd veilig opgeborgen zodat ze als bewijs kunnen dienen. Instanties krijgen kopieën zonder verborgen cameragegevens, en gezichten of kentekens kunnen onherkenbaar worden gemaakt.",
+    "secretTitle": "Je code en geheime woorden",
+    "secret": "Alleen jij hebt de geheime woorden. Wij bewaren alleen een eenrichtingsvingerafdruk, zodat we ze kunnen controleren maar niet lezen.",
+    "aiTitle": "Automatisch sorteren",
+    "ai": "Foto's (zonder verborgen cameragegevens) en beschrijvingen kunnen automatisch worden geanalyseerd om een categorie voor te stellen. Een mens controleert het resultaat voordat er iets wordt doorgestuurd.",
+    "retentionTitle": "Hoe lang",
+    "retention": "Meldingen die niet worden doorgestuurd, worden na 90 dagen verwijderd. Andere meldingen worden 5 jaar bewaard."
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "common": {
+    "appName": "ROCAN",
+    "tagline": "Denuncia daños a la naturaleza en Aruba",
+    "language": "Idioma",
+    "languages": { "pap": "Papiamento", "nl": "Nederlands", "en": "English", "es": "Español" },
+    "nav": {
+      "home": "Inicio",
+      "report": "Denunciar",
+      "track": "Seguir una denuncia",
+      "about": "Acerca de",
+      "privacy": "Privacidad"
+    },
+    "emergency": "¿Peligro para personas o un incendio activo? Llame primero al 911.",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "skip": "Ir al contenido",
+    "draftNotice": "Algunos textos son borradores pendientes de revisión."
+  },
+  "home": {
+    "title": "¿Vio daños a la naturaleza? Denúncielo de forma anónima.",
+    "intro": "Vertidos ilegales, manglares destruidos, nidos de tortugas perturbados, daños al arrecife, caza furtiva: envíe una foto y la ubicación, y lo pasamos a la entidad responsable.",
+    "cta": "Denunciar daños a la naturaleza",
+    "track": "¿Ya denunció? Consulte el estado",
+    "howTitle": "Cómo funciona",
+    "how1": "Tome una o más fotos. No se ponga en peligro.",
+    "how2": "Marque el lugar en el mapa de Aruba.",
+    "how3": "Elija lo que vio y envíe. Sin nombre, sin cuenta.",
+    "how4": "Recibirá un código y palabras secretas para seguir su denuncia."
+  },
+  "wizard": {
+    "title": "Nueva denuncia",
+    "stepOf": "Paso {step} de {total}",
+    "steps": {
+      "photos": "Fotos",
+      "location": "Ubicación",
+      "what": "¿Qué vio?",
+      "review": "Revisar y enviar"
+    },
+    "photos": {
+      "intro": "Agregue de 1 a {max} fotos de lo que vio.",
+      "hint": "Evite rostros y matrículas si puede. No se ponga en peligro.",
+      "take": "Tomar una foto",
+      "choose": "Elegir de la galería",
+      "remove": "Quitar foto {n}",
+      "count": "{count, plural, =0 {Aún no hay fotos} one {1 foto} other {# fotos}}",
+      "tooMany": "Puede agregar como máximo {max} fotos.",
+      "tooLarge": "{name} pesa más de 15 MB.",
+      "wrongType": "{name} no es una foto compatible (JPEG, PNG, WebP o HEIC).",
+      "needOne": "Agregue al menos una foto para continuar.",
+      "alt": "Foto {n} de la denuncia"
+    },
+    "location": {
+      "intro": "¿Dónde ocurrió? Use su ubicación o toque el mapa para colocar el marcador. Puede arrastrarlo.",
+      "useGps": "Usar mi ubicación",
+      "locating": "Buscando su ubicación…",
+      "gpsDenied": "La ubicación no está disponible. Toque el mapa o ingrese coordenadas.",
+      "mapLabel": "Mapa de Aruba. Toque para colocar el marcador.",
+      "mapUnavailable": "El mapa no se puede mostrar en este dispositivo. Use su ubicación o ingrese coordenadas.",
+      "manual": "Ingresar coordenadas",
+      "lat": "Latitud",
+      "lon": "Longitud",
+      "setManual": "Fijar ubicación",
+      "selected": "Seleccionado: {lat}, {lon}",
+      "accuracy": "Precisión de unos {meters} m",
+      "outside": "Esta ubicación está fuera de Aruba.",
+      "needPin": "Elija una ubicación para continuar.",
+      "provisional": "Los límites de las áreas protegidas en el mapa son provisionales."
+    },
+    "what": {
+      "intro": "Elija lo que mejor corresponda.",
+      "notSure": "No estoy seguro",
+      "notSureHint": "Un moderador elegirá la categoría correcta.",
+      "needCategory": "Elija una categoría o “No estoy seguro” para continuar.",
+      "description": "Descripción (opcional)",
+      "descriptionHint": "Describa lo que vio. No incluya nombres, teléfonos ni matrículas.",
+      "chars": "{count} / {max}",
+      "when": "¿Cuándo ocurrió?",
+      "whenNow": "Ahora",
+      "whenToday": "Hoy más temprano",
+      "whenOther": "Otra fecha",
+      "whenDate": "Fecha y hora",
+      "ongoing": "¿Sigue ocurriendo?",
+      "yes": "Sí",
+      "no": "No",
+      "unknown": "No sé"
+    },
+    "review": {
+      "intro": "Revise su denuncia antes de enviarla.",
+      "photos": "Fotos",
+      "location": "Ubicación",
+      "category": "Categoría",
+      "description": "Descripción",
+      "none": "Ninguna",
+      "consent": "Denuncio de buena fe. Las fotos pueden usarse como prueba.",
+      "needConsent": "Confirme para enviar.",
+      "send": "Enviar denuncia",
+      "sending": "Enviando… {done} de {total} fotos subidas",
+      "anonymous": "Su denuncia es anónima. No guardamos su nombre, dirección IP ni dispositivo."
+    },
+    "errors": {
+      "network": "No se pudo conectar con el servidor. Revise su conexión e intente de nuevo.",
+      "rateLimited": "Demasiadas denuncias desde esta conexión. Intente más tarde.",
+      "outside": "Esta ubicación está fuera de Aruba.",
+      "photos": "No se pudo subir una foto. Intente de nuevo.",
+      "generic": "Algo salió mal. Intente de nuevo."
+    }
+  },
+  "done": {
+    "title": "Gracias, su denuncia fue enviada",
+    "intro": "Guarde este código y las palabras secretas. Son la única forma de seguir su denuncia. No podemos recuperarlos.",
+    "code": "Código de seguimiento",
+    "secret": "Palabras secretas",
+    "copy": "Copiar código y palabras",
+    "copied": "Copiado",
+    "saveImage": "Guardar como imagen",
+    "imageTitle": "Denuncia ROCAN",
+    "track": "Consultar estado",
+    "another": "Denunciar otra cosa",
+    "missing": "No hay una denuncia reciente en este dispositivo.",
+    "warning": "No comparta las palabras secretas. Quien tenga el código y las palabras puede ver el estado de su denuncia."
+  },
+  "track": {
+    "title": "Siga su denuncia",
+    "intro": "Ingrese el código de seguimiento y las seis palabras secretas que recibió.",
+    "code": "Código de seguimiento",
+    "codePlaceholder": "RC-XXXX-XXXX",
+    "secret": "Palabras secretas",
+    "check": "Consultar estado",
+    "checking": "Consultando…",
+    "notFound": "No se encontró ninguna denuncia con este código y palabras.",
+    "rateLimited": "Demasiados intentos. Intente más tarde.",
+    "status": "Estado",
+    "timeline": "Historial",
+    "messages": "Mensajes de los moderadores",
+    "statuses": {
+      "received": "Recibida",
+      "checking": "En revisión",
+      "sent": "Enviada a la entidad responsable",
+      "handling": "La entidad la está atendiendo",
+      "closed_action": "Cerrada: la entidad tomó medidas",
+      "closed": "Cerrada",
+      "not_forwarded": "No enviada",
+      "combined": "Combinada con una denuncia existente"
+    },
+    "withdraw": "Retirar denuncia",
+    "withdrawConfirm": "¿Retirar esta denuncia? No se puede deshacer.",
+    "withdrawn": "Su denuncia fue retirada."
+  },
+  "about": {
+    "title": "Acerca de ROCAN",
+    "p1": "ROCAN permite a cualquier persona denunciar daños a la naturaleza en Aruba, de forma anónima y desde su teléfono.",
+    "p2": "Cada denuncia se revisa y se envía a la entidad responsable: la Directie Natuur en Milieu, la Aruba Conservation Foundation (para el Parque Nacional Arikok y el Parke Marino) o la Directie Openbare Werken. Se pide a las entidades que confirmen la recepción en 7 días.",
+    "p3": "Cada mes se envía un resumen de todas las denuncias, y de cómo respondieron las entidades, a la Fiscalía (OM Aruba).",
+    "p4": "ROCAN no es un servicio de emergencia. En una emergencia, llame al 911."
+  },
+  "privacy": {
+    "title": "Privacidad",
+    "intro": "ROCAN está hecho para que no podamos saber quién es usted.",
+    "notStoredTitle": "Lo que nunca guardamos",
+    "notStored": "Su nombre, teléfono, correo, dirección IP, datos del navegador o del dispositivo. No hay cuentas ni rastreadores.",
+    "storedTitle": "Lo que guardamos",
+    "stored": "Sus fotos, la ubicación elegida, la categoría, su descripción y cuándo la envió. La hora y el lugar en que se tomó una foto (de la foto misma) se guardan como prueba. Otra información oculta en las fotos, como el modelo o número de serie de la cámara, se elimina.",
+    "evidenceTitle": "Fotos como prueba",
+    "evidence": "Las fotos originales se guardan sin cambios para que sirvan como prueba. Las entidades reciben copias sin datos ocultos de la cámara, y los rostros o matrículas pueden difuminarse.",
+    "secretTitle": "Su código y palabras secretas",
+    "secret": "Solo usted tiene las palabras secretas. Guardamos una huella de un solo sentido: podemos comprobarlas pero no leerlas.",
+    "aiTitle": "Clasificación automática",
+    "ai": "Las fotos (sin datos ocultos de la cámara) y las descripciones pueden analizarse automáticamente para sugerir una categoría. Una persona revisa el resultado antes de enviar nada.",
+    "retentionTitle": "Cuánto tiempo",
+    "retention": "Las denuncias que no se envían se eliminan a los 90 días. Las demás se guardan 5 años."
+  }
+}

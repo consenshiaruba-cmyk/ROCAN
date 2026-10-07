@@ -1,0 +1,173 @@
+{
+  "common": {
+    "appName": "ROCAN",
+    "tagline": "Raporta daño na naturalesa di Aruba",
+    "language": "Idioma",
+    "languages": { "pap": "Papiamento", "nl": "Nederlands", "en": "English", "es": "Español" },
+    "nav": {
+      "home": "Inicio",
+      "report": "Raporta",
+      "track": "Sigui un raporte",
+      "about": "Tocante ROCAN",
+      "privacy": "Privacidad"
+    },
+    "emergency": "Peliger pa hende of un candela activo? Yama 911 prome.",
+    "back": "Bek",
+    "next": "Siguiente",
+    "skip": "Bai na e contenido",
+    "draftNotice": "Algun texto ta borador cu ta warda revision."
+  },
+  "home": {
+    "title": "Bo a mira daño na naturalesa? Raport'é anonimamente.",
+    "intro": "Tira sushi ilegal, mangel destrui, nèshi di turtuga molestá, daño na rif, caza ilegal: manda un potret y e luga, y nos ta pas'é pa e instancia responsabel.",
+    "cta": "Raporta daño na naturalesa",
+    "track": "Bo a raporta caba? Mira e status",
+    "howTitle": "Con e ta funciona",
+    "how1": "Saca un of mas potret. No pone bo mes na peliger.",
+    "how2": "Marca e luga riba e mapa di Aruba.",
+    "how3": "Scoge loke bo a mira y manda. Sin nomber, sin cuenta.",
+    "how4": "Bo ta haya un code y palabranan secreto pa sigui bo raporte."
+  },
+  "wizard": {
+    "title": "Raporte nobo",
+    "stepOf": "Paso {step} di {total}",
+    "steps": {
+      "photos": "Potret",
+      "location": "Luga",
+      "what": "Kico bo a mira?",
+      "review": "Revisa y manda"
+    },
+    "photos": {
+      "intro": "Agrega 1 te {max} potret di loke bo a mira.",
+      "hint": "Evita cara y plachi di auto si bo por. No pone bo mes na peliger.",
+      "take": "Saca un potret",
+      "choose": "Scoge for di galeria",
+      "remove": "Kita potret {n}",
+      "count": "{count, plural, =0 {Ainda no tin potret} one {1 potret} other {# potret}}",
+      "tooMany": "Bo por agrega maximo {max} potret.",
+      "tooLarge": "{name} ta mas grandi cu 15 MB.",
+      "wrongType": "{name} no ta un potret soportá (JPEG, PNG, WebP of HEIC).",
+      "needOne": "Agrega por lo menos un potret pa sigui.",
+      "alt": "Potret {n} di e raporte"
+    },
+    "location": {
+      "intro": "Unda esaki a sosode? Usa bo ubicacion of primi riba e mapa pa pone e marca. Bo por hala e marca.",
+      "useGps": "Usa mi ubicacion",
+      "locating": "Ta buscando bo ubicacion…",
+      "gpsDenied": "Ubicacion no ta disponibel. Primi riba e mapa of drenta coordinadanan.",
+      "mapLabel": "Mapa di Aruba. Primi pa pone e marca.",
+      "mapUnavailable": "E mapa no por mustra riba e aparato aki. Usa bo ubicacion of drenta coordinadanan.",
+      "manual": "Drenta coordinadanan",
+      "lat": "Latitud",
+      "lon": "Longitud",
+      "setManual": "Fiha e luga",
+      "selected": "Scogi: {lat}, {lon}",
+      "accuracy": "Precision di mas o menos {meters} m",
+      "outside": "E luga aki ta pafo di Aruba.",
+      "needPin": "Scoge un luga pa sigui.",
+      "provisional": "E limitenan di area protehá riba e mapa ta provisional."
+    },
+    "what": {
+      "intro": "Scoge loke ta pas mihó.",
+      "notSure": "Mi no ta sigur",
+      "notSureHint": "Un moderador lo scoge e categoria corecto.",
+      "needCategory": "Scoge un categoria of “Mi no ta sigur” pa sigui.",
+      "description": "Descripcion (opcional)",
+      "descriptionHint": "Describi loke bo a mira. No pone nomber, number di telefon of plachi di auto.",
+      "chars": "{count} / {max}",
+      "when": "Ki ora esaki a sosode?",
+      "whenNow": "Awor",
+      "whenToday": "Mas trempan awe",
+      "whenOther": "Otro fecha",
+      "whenDate": "Fecha y ora",
+      "ongoing": "E ta sigui pasa?",
+      "yes": "Si",
+      "no": "No",
+      "unknown": "Mi no sa"
+    },
+    "review": {
+      "intro": "Revisa bo raporte prome cu bo mand'é.",
+      "photos": "Potret",
+      "location": "Luga",
+      "category": "Categoria",
+      "description": "Descripcion",
+      "none": "Nada",
+      "consent": "Mi ta raporta di bon fe. E potretnan por wordo usa como prueba.",
+      "needConsent": "Confirma pa manda.",
+      "send": "Manda raporte",
+      "sending": "Ta mandando… {done} di {total} potret subi",
+      "anonymous": "Bo raporte ta anonimo. Nos no ta warda bo nomber, adres IP ni aparato."
+    },
+    "errors": {
+      "network": "No por a yega e server. Controla bo conexion y purba atrobe.",
+      "rateLimited": "Demasiado raporte for di e conexion aki. Purba atrobe mas despues.",
+      "outside": "E luga aki ta pafo di Aruba.",
+      "photos": "Un potret no por a subi. Purba atrobe.",
+      "generic": "Algo a bai robes. Purba atrobe."
+    }
+  },
+  "done": {
+    "title": "Danki, bo raporte a wordo manda",
+    "intro": "Warda e code y e palabranan secreto aki. Ta e unico manera pa sigui bo raporte. Nos no por recupera nan.",
+    "code": "Code pa sigui",
+    "secret": "Palabranan secreto",
+    "copy": "Copia code y palabranan",
+    "copied": "Copia",
+    "saveImage": "Warda como imagen",
+    "imageTitle": "Raporte ROCAN",
+    "track": "Mira e status",
+    "another": "Raporta otro cos",
+    "missing": "No tin un raporte resien riba e aparato aki.",
+    "warning": "No parti e palabranan secreto. Ken cu tin e code y e palabranan por mira e status di bo raporte."
+  },
+  "track": {
+    "title": "Sigui bo raporte",
+    "intro": "Drenta e code pa sigui y e seis palabranan secreto cu bo a haya.",
+    "code": "Code pa sigui",
+    "codePlaceholder": "RC-XXXX-XXXX",
+    "secret": "Palabranan secreto",
+    "check": "Mira e status",
+    "checking": "Ta controlando…",
+    "notFound": "No a haya ningun raporte cu e code y palabranan aki.",
+    "rateLimited": "Demasiado intento. Purba atrobe mas despues.",
+    "status": "Status",
+    "timeline": "Historia",
+    "messages": "Mensahe di e moderadornan",
+    "statuses": {
+      "received": "Ricibi",
+      "checking": "Ta wordo revisa",
+      "sent": "Manda pa e instancia responsabel",
+      "handling": "E instancia ta trata e raporte",
+      "closed_action": "Cera: e instancia a tuma accion",
+      "closed": "Cera",
+      "not_forwarded": "No a wordo manda",
+      "combined": "Combina cu un raporte cu tin caba"
+    },
+    "withdraw": "Retira raporte",
+    "withdrawConfirm": "Retira e raporte aki? Esaki no por wordo deshaci.",
+    "withdrawn": "Bo raporte a wordo retira."
+  },
+  "about": {
+    "title": "Tocante ROCAN",
+    "p1": "Cu ROCAN tur hende por raporta daño na naturalesa di Aruba, anonimamente y for di nan telefon.",
+    "p2": "Cada raporte ta wordo revisa y manda pa e instancia responsabel: Directie Natuur en Milieu, Aruba Conservation Foundation (pa Parke Nacional Arikok y Parke Marino) of Directie Openbare Werken. Nos ta pidi e instancianan confirma recibo den 7 dia.",
+    "p3": "Tur luna un resumen di tur raporte, y di con e instancianan a reacciona, ta bai pa Ministerio Publico (OM Aruba).",
+    "p4": "ROCAN no ta un servicio di emergencia. Den caso di emergencia, yama 911."
+  },
+  "privacy": {
+    "title": "Privacidad",
+    "intro": "ROCAN ta traha di tal manera cu nos no por sa ken bo ta.",
+    "notStoredTitle": "Loke nos nunca ta warda",
+    "notStored": "Bo nomber, number di telefon, e-mail, adres IP, datos di bo browser of aparato. No tin cuenta ni tracker.",
+    "storedTitle": "Loke nos ta warda",
+    "stored": "Bo potretnan, e luga cu bo a scoge, e categoria, bo descripcion y ki ora bo a manda. E ora y e luga unda un potret a wordo saca (for di e potret mes) ta keda warda como prueba. Otro informacion scondi den potret, manera e modelo of number di serie di camera, ta wordo kita.",
+    "evidenceTitle": "Potret como prueba",
+    "evidence": "E potretnan original ta wordo warda sin cambio pa nan por sirbi como prueba. E instancianan ta haya copia sin datos scondi di camera, y cara of plachi di auto por wordo hasi invisibel.",
+    "secretTitle": "Bo code y palabranan secreto",
+    "secret": "Ta bo so tin e palabranan secreto. Nos ta warda un marca di un solo direccion: nos por controla nan pero no por lesa nan.",
+    "aiTitle": "Clasificacion automatico",
+    "ai": "Potret (sin datos scondi di camera) y descripcion por wordo analisa automaticamente pa sugeri un categoria. Un persona ta revisa e resultado prome cu algo wordo manda.",
+    "retentionTitle": "Pa cuanto tempo",
+    "retention": "Raportenan cu no ta wordo manda ta wordo eliminá despues di 90 dia. Otro raporte ta keda warda 5 aña."
+  }
+}

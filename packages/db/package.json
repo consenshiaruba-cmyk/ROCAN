@@ -1,0 +1,28 @@
+{
+  "name": "@rocan/db",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "generate": "drizzle-kit generate",
+    "migrate": "tsx src/cli/migrate.ts",
+    "seed": "tsx src/cli/seed.ts",
+    "reset": "tsx src/cli/reset.ts"
+  },
+  "dependencies": {
+    "@node-rs/argon2": "^2.2.2",
+    "@rocan/clock": "workspace:*",
+    "@rocan/config": "workspace:*",
+    "@rocan/core": "workspace:*",
+    "drizzle-orm": "^0.45.3",
+    "pg-boss": "^12.37.0",
+    "postgres": "^3.4.9",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.11"
+  }
+}

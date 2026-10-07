@@ -1,0 +1,318 @@
+{
+ "type": "FeatureCollection",
+ "comment": "PLACEHOLDER hand-drawn approximation for development and tests only. Replace with official GIS (SPEC §16 item 7). District boxes are clipped to the coastline by the seed.",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "NOORD",
+    "name": "Noord"
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -70.1,
+        12.545
+       ],
+       [
+        -69.995,
+        12.545
+       ],
+       [
+        -69.995,
+        12.7
+       ],
+       [
+        -70.1,
+        12.7
+       ],
+       [
+        -70.1,
+        12.545
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "ORANJESTAD_WEST",
+    "name": "Oranjestad West"
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -70.1,
+        12.4
+       ],
+       [
+        -70.03,
+        12.4
+       ],
+       [
+        -70.03,
+        12.545
+       ],
+       [
+        -70.1,
+        12.545
+       ],
+       [
+        -70.1,
+        12.4
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "ORANJESTAD_EAST",
+    "name": "Oranjestad East"
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -70.03,
+        12.4
+       ],
+       [
+        -69.995,
+        12.4
+       ],
+       [
+        -69.995,
+        12.545
+       ],
+       [
+        -70.03,
+        12.545
+       ],
+       [
+        -70.03,
+        12.4
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "PARADERA",
+    "name": "Paradera"
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -69.995,
+        12.515
+       ],
+       [
+        -69.96,
+        12.515
+       ],
+       [
+        -69.96,
+        12.7
+       ],
+       [
+        -69.995,
+        12.7
+       ],
+       [
+        -69.995,
+        12.515
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "SANTA_CRUZ",
+    "name": "Santa Cruz"
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -69.96,
+        12.48
+       ],
+       [
+        -69.925,
+        12.48
+       ],
+       [
+        -69.925,
+        12.7
+       ],
+       [
+        -69.96,
+        12.7
+       ],
+       [
+        -69.96,
+        12.48
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "SAVANETA",
+    "name": "Savaneta"
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -69.995,
+        12.4
+       ],
+       [
+        -69.96,
+        12.4
+       ],
+       [
+        -69.96,
+        12.515
+       ],
+       [
+        -69.995,
+        12.515
+       ],
+       [
+        -69.995,
+        12.4
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        -69.96,
+        12.4
+       ],
+       [
+        -69.925,
+        12.4
+       ],
+       [
+        -69.925,
+        12.48
+       ],
+       [
+        -69.96,
+        12.48
+       ],
+       [
+        -69.96,
+        12.4
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "SAN_NICOLAS_NOORD",
+    "name": "San Nicolas Noord"
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -69.925,
+        12.45
+       ],
+       [
+        -69.8,
+        12.45
+       ],
+       [
+        -69.8,
+        12.7
+       ],
+       [
+        -69.925,
+        12.7
+       ],
+       [
+        -69.925,
+        12.45
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "code": "SAN_NICOLAS_ZUID",
+    "name": "San Nicolas Zuid"
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -69.925,
+        12.4
+       ],
+       [
+        -69.8,
+        12.4
+       ],
+       [
+        -69.8,
+        12.45
+       ],
+       [
+        -69.925,
+        12.45
+       ],
+       [
+        -69.925,
+        12.4
+       ]
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}
